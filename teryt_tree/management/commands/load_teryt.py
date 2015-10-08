@@ -1,8 +1,12 @@
 # -*- coding: utf-8 -*-
-from django.core.management.base import BaseCommand
+from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
 from django.utils.lru_cache import lru_cache
-from lxml import etree
+
+try:
+    from lxml import etree
+except ImportError:
+    raise CommandError('Missing dependency. Please, install lxml>=2.3.3')
 
 from teryt_tree.models import Category, JednostkaAdministracyjna
 
