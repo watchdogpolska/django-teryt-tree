@@ -7,7 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('teryt', '0002_auto_20150803_0543'),
+        ('teryt_tree', '0002_auto_20150803_0543'),
     ]
 
     operations = [

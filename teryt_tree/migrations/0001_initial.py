@@ -34,9 +34,9 @@ class Migration(migrations.Migration):
                 ('rght', models.PositiveIntegerField(editable=False, db_index=True)),
                 ('tree_id', models.PositiveIntegerField(editable=False, db_index=True)),
                 ('level', models.PositiveIntegerField(editable=False, db_index=True)),
-                ('category', models.ForeignKey(to='teryt.Category')),
+                ('category', models.ForeignKey(to='teryt_tree.Category')),
                 ('parent', mptt.fields.TreeForeignKey(related_name='children',
-                                                      blank=True, to='teryt.JednostkaAdministracyjna', null=True)),
+                                                      blank=True, to='teryt_tree.JednostkaAdministracyjna', null=True)),
             ],
             options={
                 'verbose_name': 'TERYT',
