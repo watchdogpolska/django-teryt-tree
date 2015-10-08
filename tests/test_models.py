@@ -12,14 +12,17 @@ from django.test import TestCase
 
 from teryt_tree import models
 
+from django.utils.encoding import force_text
 
-class TestTeryt_tree(TestCase):
 
-    def setUp(self):
-        pass
+class JednostkaAdministracyjnaTestCase(TestCase):
 
-    def test_something(self):
-        pass
+    def test_string_representation(self):
+        entry = models.JednostkaAdministracyjna(name="My entry title")
+        self.assertEqual(force_text(entry), entry.name)
 
-    def tearDown(self):
-        pass
+
+class CategoryTestCase(TestCase):
+    def test_string_representation(self):
+        entry = models.Category(name="My entry title")
+        self.assertEqual(force_text(entry), entry.name)
