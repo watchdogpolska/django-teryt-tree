@@ -18,17 +18,15 @@ def get_genre(name, level):
 
 
 class Command(BaseCommand):
+    args = '<filename>'
     option_list = BaseCommand.option_list
-    help = ('Creates a data in database base on Teryt.xml file.')
+    help = 'Creates a data in database base on TERYT.xml file.'
     PARENT_REDUCE = {2: 0,
                      4: 2,
                      7: 4}
     LEVEL_REDUCE = {2: 1,
                     4: 2,
                     7: 3}
-
-    def add_arguments(self, parser):
-        parser.add_argument('filename', type=str)
 
     @classmethod
     def to_object(cls, row, commit=True):
@@ -45,7 +43,9 @@ class Command(BaseCommand):
         return obj
 
     def handle(self, *args, **options):
-        root = etree.parse(options['filename'])
+        if len(args) != 1:
+            raise CommandError('Missing argument (or to many). Provide only filename to TERYT.xml.')
+        root = etree.parse(args[0])
         self.stdout.write(("Importing started. "
                            "This may take a few seconds. Please wait a moment.\n"))
         row_count = 0
