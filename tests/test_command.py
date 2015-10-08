@@ -28,7 +28,7 @@ class TestParseCommand(TestCase):
 
     def _save_file(self, filename, url):
         content = self._get_url(url)
-        zfile = zipfile.ZipFile(io.BytesIO(content.read()))
+        zfile = zipfile.ZipFile(io.BytesIO(content))
         zfile.extract(filename, self.tempdir)
 
     def setUp(self):
