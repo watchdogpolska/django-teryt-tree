@@ -2,10 +2,16 @@
 
 language: python
 
-python:
-  - "3.4"
-  - "3.3"
-  - "2.7"
+env:
+  - TOX_ENV=py27-dj17
+  - TOX_ENV=py33-dj17
+  - TOX_ENV=py34-dj17
+  - TOX_ENV=py27-dj18
+  - TOX_ENV=py33-dj18
+  - TOX_ENV=py34-dj18
+  - TOX_ENV=py27-djmaster
+  - TOX_ENV=py33-djmaster
+  - TOX_ENV=py34-djmaster
 
 before_install:
   - pip install codecov
