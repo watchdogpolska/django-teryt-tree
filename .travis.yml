@@ -13,6 +13,12 @@ env:
   - TOX_ENV=py33-djmaster
   - TOX_ENV=py34-djmaster
 
+matrix:
+  allow_failures:
+    - env: TOX_ENV=py27-djmaster
+    - env: TOX_ENV=py33-djmaster
+    - env: TOX_ENV=py34-djmaster
+
 before_install:
   - pip install coveralls tox
 

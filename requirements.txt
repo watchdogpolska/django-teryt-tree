@@ -1,5 +1,5 @@
 wheel==0.24.0
 # Additional requirements go here
-django-autoslug==1.8.0
+django-autoslug>=1.8.0
 django-model-utils>=2.3.1
 django-mptt>=0.7.4
