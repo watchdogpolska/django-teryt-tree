@@ -17,4 +17,4 @@ install: pip install -r requirements-test.txt
 script: coverage run --source teryt_tree runtests.py
 
 after_success:
-  - codecov
+  - coveralls
