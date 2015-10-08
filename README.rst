@@ -8,6 +8,9 @@ django-teryt-tree
 .. image:: https://travis-ci.org/ad-m/django-teryt-tree.png?branch=master
     :target: https://travis-ci.org/ad-m/django-teryt-tree
 
+.. image:: https://coveralls.io/repos/ad-m/django-teryt-tree/badge.svg?branch=master&service=github
+    :target: https://coveralls.io/github/ad-m/django-teryt-tree?branch=master 
+
 Django-teryt-tree is a Django app that implements TERYT database as tree by django-mptt.
 
 Documentation
