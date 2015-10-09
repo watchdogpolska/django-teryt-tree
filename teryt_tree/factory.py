@@ -1,14 +1,28 @@
-from .models import JednostkaAdministracyjna as JST
-from .models import Category
+from __future__ import absolute_import
+from teryt_tree import models
+import factory
 
-TERYT_COUNTER = 0
+
+class CategoryFactory(factory.django.DjangoModelFactory):
+    level = 1
+    name = factory.Sequence(lambda n: 'category-{0}'.format(n))
+
+    class Meta:
+        model = models.Category
+
+
+class JednostkaAdministracyjnaFactory(factory.django.DjangoModelFactory):
+    name = factory.Sequence(lambda n: 'jst-{0}'.format(n))
+    pk = factory.Sequence(lambda n: n)
+    category = factory.SubFactory(CategoryFactory)
+    updated_on = '2015-05-12'
+    active = True
+    rght = 0
+    level = 0
+
+    class Meta:
+        model = models.JednostkaAdministracyjna
 
 
 def factory_jst():
-    global TERYT_COUNTER
-    TERYT_COUNTER += 1
-    category = Category.objects.create(name="X", level=1)
-    return JST.objects.create(name="X", id=TERYT_COUNTER,
-                              category=category,
-                              updated_on='2015-05-12',
-                              active=True)
+    return JednostkaAdministracyjnaFactory()
