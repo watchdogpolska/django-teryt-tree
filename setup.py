@@ -43,6 +43,7 @@ setup(
         'django-mptt',
         'django-model-utils',
         'django-autoslug',
+	'factory-boy',
     ],
     license="BSD",
     zip_safe=False,
