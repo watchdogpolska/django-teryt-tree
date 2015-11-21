@@ -29,6 +29,17 @@ Then use it in a project::
 
     import teryt_tree
 
+To load TERC register:
+
+    wget "http://www.stat.gov.pl/broker/access/prefile/downloadPreFile.jspa?id=1110" -O TERC.xml.zip
+    unzip TERC.xml.zip
+    pip install lxml
+    python manage.py load_teryt TERC.xml
+    rm TERC.xml*
+
+
+
+    
 Features
 --------
 
