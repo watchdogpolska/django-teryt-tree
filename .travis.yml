@@ -9,6 +9,9 @@ env:
   - TOX_ENV=py27-dj18-coveralls
   - TOX_ENV=py33-dj18
   - TOX_ENV=py34-dj18
+  - TOX_ENV=py27-dj19
+  - TOX_ENV=py33-dj19
+  - TOX_ENV=py34-dj19
   - TOX_ENV=py27-djmaster
   - TOX_ENV=py33-djmaster
   - TOX_ENV=py34-djmaster
