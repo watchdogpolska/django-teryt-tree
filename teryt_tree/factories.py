@@ -1,6 +1,7 @@
 from __future__ import absolute_import
-from teryt_tree import models
+
 import factory
+from teryt_tree import models
 
 
 class CategoryFactory(factory.django.DjangoModelFactory):
