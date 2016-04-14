@@ -45,7 +45,6 @@ setup(
         'django-autoslug',
         'factory-boy',
     ],
-    url='https://github.com/ad-m/django-teryt-tree',
     download_url='https://github.com/ad-m/django-teryt-tree/tarball/%s' % (version),
     license="BSD",
     zip_safe=False,

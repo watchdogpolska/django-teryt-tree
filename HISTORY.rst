@@ -6,7 +6,7 @@ History
 0.5.0 (2016-04-14)
 
 * Added TravisCI badge in README.rst
-* Added url,download_url in setup.py
+* Added download_url in setup.py
 
 0.4.0 (2016-04-14)
 
