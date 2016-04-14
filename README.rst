@@ -49,7 +49,10 @@ To load TERC register database::
     python manage.py load_teryt TERC.xml
     rm TERC.xml*
 
-    
+or one-line::
+
+    wget "http://www.stat.gov.pl/broker/access/prefile/downloadPreFile.jspa?id=1110"  -o /dev/null -O - | unzip -p - TERC.xml | python manage.py load_teryt -
+
 Features
 --------
 
