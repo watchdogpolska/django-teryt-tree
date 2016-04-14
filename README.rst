@@ -34,10 +34,9 @@ Then use it in a project::
 
     import teryt_tree
 
-or 
+or::
 
     from teryt_tree.models import JednostkaAdministracyjna
-
 
 To load TERC register database::
 
