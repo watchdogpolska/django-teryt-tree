@@ -26,6 +26,10 @@ class JednostkaAdministracyjnaQuerySet(models.QuerySet):
     def community(self):
         return self.filter(category__level=3)
 
+    def area(self, jst):
+        return self.filter(tree_id=jst.tree_id,
+                           lft__range=(jst.lft, jst.rght))
+
 
 @python_2_unicode_compatible
 class Category(models.Model):
