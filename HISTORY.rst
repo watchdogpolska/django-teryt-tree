@@ -3,6 +3,17 @@
 History
 -------
 
+0.6.0 (2016-07-3)
+++++++++++++++++++
+
+* Add django-rest-framework extensions
+* Add django-autocomplete-light v3 support
+* Add JednostkaAdministracyjnaQuerySet.area
+* Add one-line TERC import command
+* Add cache to Travis
+* Fix syntax in HISTORY.rst
+
+
 0.5.0 (2016-04-14)
 ++++++++++++++++++
 
