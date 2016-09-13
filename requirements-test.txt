@@ -3,3 +3,4 @@ mock>=1.0.1
 flake8>=2.1.0
 lxml>=2.3.3
 coverage>=4.0
+tox==2.3.1

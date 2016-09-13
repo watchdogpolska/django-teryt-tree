@@ -38,4 +38,7 @@ class TestParseCommand(TestCase):
 
     def test_command(self):
         for filename in self.files.keys():
-            management.call_command('load_teryt', path.join(self.tempdir, filename))
+            management.call_command('load_teryt',
+                                    path.join(self.tempdir, filename),
+                                    '--limit',
+                                    '50')
