@@ -3,7 +3,13 @@
 History
 -------
 
-0.6.0 (2016-07-3)
+0.7.0 (2016-09-13)
+++++++++++++++++++
+* Drop django 1.7 support
+* Add support django 1.10
+* Add ```--limit``` param to ```load_teryt``` command
+
+0.6.0 (2016-07-03)
 ++++++++++++++++++
 
 * Add django-rest-framework extensions
