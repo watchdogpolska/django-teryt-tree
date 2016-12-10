@@ -1,27 +1,11 @@
+import os
 import sys
 
 try:
     from django.conf import settings
     from django.test.utils import get_runner
-
-    settings.configure(
-        DEBUG=True,
-        USE_TZ=True,
-        DATABASES={
-            "default": {
-                "ENGINE": "django.db.backends.sqlite3",
-            }
-        },
-        ROOT_URLCONF="teryt_tree.urls",
-        INSTALLED_APPS=[
-            "django.contrib.auth",
-            "django.contrib.contenttypes",
-            "django.contrib.sites",
-            "teryt_tree",
-        ],
-        SITE_ID=1,
-        MIDDLEWARE_CLASSES=(),
-    )
+    os.environ['DJANGO_SETTINGS_MODULE'] = 'tests.settings'
+    settings.setup()
 
     try:
         import django

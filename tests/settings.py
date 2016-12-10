@@ -1,0 +1,17 @@
+DEBUG = True
+USE_TZ = True
+SECRET_KEY = 'pQO26MjmglIoVGG40wrOmYOHYKr2R6EFOhxZHaFwlz6LpLvQ49'
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+    }
+}
+ROOT_URLCONF = "teryt_tree.urls"
+INSTALLED_APPS = [
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sites",
+    "teryt_tree",
+]
+SITE_ID = 1
+MIDDLEWARE_CLASSES = ()

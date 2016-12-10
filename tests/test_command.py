@@ -4,7 +4,7 @@ import zipfile
 from collections import OrderedDict
 from os import path
 
-from django.core import management
+from django.core.management import call_command
 from django.test import TestCase
 
 
@@ -38,7 +38,8 @@ class TestParseCommand(TestCase):
 
     def test_command(self):
         for filename in self.files.keys():
-            management.call_command('load_teryt',
-                                    path.join(self.tempdir, filename),
-                                    '--limit',
-                                    '50')
+            call_command('load_teryt',
+                         path.join(self.tempdir, filename),
+                         '--limit',
+                         '50',
+                         )
