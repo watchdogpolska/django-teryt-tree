@@ -4,24 +4,16 @@
 import os
 import sys
 
-import teryt_tree
-
 try:
     from setuptools import setup
 except ImportError:
     from distutils.core import setup
 
-version = teryt_tree.__version__
+version = '0.7.0'
 
 if sys.argv[-1] == 'publish':
     os.system('python setup.py sdist upload')
     os.system('python setup.py bdist_wheel upload')
-    sys.exit()
-
-if sys.argv[-1] == 'tag':
-    print("Tagging the version on github:")
-    os.system("git tag -a %s -m 'version %s'" % (version, version))
-    os.system("git push --tags")
     sys.exit()
 
 readme = open('README.rst').read()
