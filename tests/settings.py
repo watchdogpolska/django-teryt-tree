@@ -4,9 +4,10 @@ SECRET_KEY = 'pQO26MjmglIoVGG40wrOmYOHYKr2R6EFOhxZHaFwlz6LpLvQ49'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
+        "NAME": "database.sqlite3"
     }
 }
-ROOT_URLCONF = "teryt_tree.urls"
+ROOT_URLCONF = "tests.urls"
 INSTALLED_APPS = [
     "django.contrib.auth",
     "django.contrib.contenttypes",
