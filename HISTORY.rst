@@ -2,12 +2,28 @@
 
 History
 -------
+0.10.0 (2016-09-13)
++++++++++++++++++++
+* Add missing migrations
+* Add dummy urlpatterns
+
+0.9.0 (2016-09-13)
+++++++++++++++++++
+* Fix runtests
+
+0.8.0 (2016-12-10)
+++++++++++++++++++
+* Add bumpversion
+* Add AppConfig with translation ``app_label``
+* Update polish locale
+* Extract settings as standalone file
+* Add manage.py
 
 0.7.0 (2016-09-13)
 ++++++++++++++++++
 * Drop django 1.7 support
 * Add support django 1.10
-* Add ```--limit``` param to ```load_teryt``` command
+* Add ``--limit`` param to ``load_teryt`` command
 
 0.6.0 (2016-07-03)
 ++++++++++++++++++
