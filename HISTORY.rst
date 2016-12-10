@@ -2,6 +2,11 @@
 
 History
 -------
+
+0.11.0 (2016-09-13)
++++++++++++++++++++
+* Add locale to package
+
 0.10.0 (2016-09-13)
 +++++++++++++++++++
 * Add missing migrations
