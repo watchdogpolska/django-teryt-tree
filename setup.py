@@ -35,7 +35,6 @@ setup(
         'django-mptt',
         'django-model-utils',
         'django-autoslug',
-        'factory-boy',
     ],
     download_url='https://github.com/ad-m/django-teryt-tree/tarball/%s' % (version),
     license="BSD",
@@ -50,7 +49,7 @@ setup(
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
     ],
 )
