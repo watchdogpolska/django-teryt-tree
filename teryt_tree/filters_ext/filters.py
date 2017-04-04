@@ -18,7 +18,7 @@ class JSTModelChoice(django_filters.ModelChoiceFilter):
 
     def __init__(self, level=None, *args, **kwargs):
         self.level = level
-        kwargs['action'] = self.filter__area
+        kwargs['method'] = self.filter__area
         kwargs['queryset'] = self.get_queryset()
         super(JSTModelChoice, self).__init__(*args, **kwargs)
 

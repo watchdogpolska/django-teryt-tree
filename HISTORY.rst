@@ -3,6 +3,12 @@
 History
 -------
 
+0.12.0 (2017-04-04)
++++++++++++++++++++
+
+* Fix compatibility django-filters 1.x
+* Move ``teryt_tree.filters`` to ``teryt_tree.filters_ext.filters``
+
 0.11.0 (2016-09-13)
 +++++++++++++++++++
 * Add locale to package
