@@ -3,11 +3,16 @@
 History
 -------
 
+0.12.1 (2017-04-04)
+*******************
+
+* Improve compatibility django-filters 1.x in ``dal_ext``
+
 0.12.0 (2017-04-04)
 +++++++++++++++++++
 
-* Fix compatibility django-filters 1.x
 * Move ``teryt_tree.filters`` to ``teryt_tree.filters_ext.filters``
+* Fix compatibility django-filters 1.x in ```filters_ext``
 
 0.11.0 (2016-09-13)
 +++++++++++++++++++

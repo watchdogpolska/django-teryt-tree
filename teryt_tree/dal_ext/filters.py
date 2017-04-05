@@ -8,12 +8,12 @@ class AreaFilter(ModelChoiceFilter):
         label = kwargs.pop('label', _("Area"))
         required = kwargs.pop('required', False)
         queryset = kwargs.pop('queryset', JednostkaAdministracyjna.objects.all())
-        action = kwargs.pop('action', lambda q, v: q.area(v))
+        action = kwargs.pop('method', lambda q, v: q.area(v))
         super(ModelChoiceFilter, self).__init__(*args,
                                                 label=label,
                                                 required=required,
                                                 queryset=queryset,
-                                                action=action,
+                                                method=action,
                                                 **kwargs)
 
 
