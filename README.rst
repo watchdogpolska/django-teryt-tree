@@ -41,22 +41,18 @@ or::
 
     from teryt_tree.models import JednostkaAdministracyjna
 
-To load TERC register database::
+To load TERC register database visit http://teryt.stat.gov.pl/ to download valid database. Next to execute following commands:
 
-    wget "http://www.stat.gov.pl/broker/access/prefile/downloadPreFile.jspa?id=1110" -O TERC.xml.zip
     unzip TERC.xml.zip
     pip install lxml
     python manage.py load_teryt TERC.xml
     rm TERC.xml*
 
-or one-line::
-
-    wget "http://www.stat.gov.pl/broker/access/prefile/downloadPreFile.jspa?id=1110"  -o /dev/null -O - | unzip -p - TERC.xml | python manage.py load_teryt -
-
 Features
 --------
 
-* TODO
+* Import database from official exports
+* Store data as modified pre-order traversal tree for effective region queery
 
 Cookiecutter Tools Used in Making This Package
 ----------------------------------------------
