@@ -35,6 +35,7 @@ setup(
         'django-mptt',
         'django-model-utils',
         'django-autoslug',
+        'tqdm'
     ],
     download_url='https://github.com/ad-m/django-teryt-tree/tarball/%s' % (version),
     license="BSD",

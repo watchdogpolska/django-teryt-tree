@@ -72,3 +72,15 @@ class JednostkaAdministracyjna(MPTTModel):
     class Meta:
         verbose_name = _('Unit of administrative division')
         verbose_name_plural = _('Units of administrative division')
+
+
+@python_2_unicode_compatible
+class SIMC(models.Model):
+    id = models.CharField(max_length=7, primary_key=True)
+    sym_pod = models.ForeignKey('self', blank=True)
+    terc = models.ForeignKey(JednostkaAdministracyjna)
+    name = models.CharField(max_length=100)
+    updated_on = models.DateField(verbose_name=_("Updated date"))
+
+    def __str__(self):
+        return "{}".format(self.name)
