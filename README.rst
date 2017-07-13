@@ -14,7 +14,7 @@ django-teryt-tree
 .. image:: https://travis-ci.org/ad-m/django-teryt-tree.svg?branch=master
     :target: https://travis-ci.org/ad-m/django-teryt-tree
 
-Django-teryt-tree is a Django app that implements TERYT database as tree by django-mptt.
+Django-teryt-tree is a Django app that implements TERYT database as tree by django-mptt and flat SIMC database.
 
 Documentation
 -------------
@@ -41,17 +41,19 @@ or::
 
     from teryt_tree.models import JednostkaAdministracyjna
 
-To load TERC register database visit http://teryt.stat.gov.pl/ to download valid database. Next to execute following commands:
+To load TERC register database visit http://teryt.stat.gov.pl/ to download valid database. Next to execute following commands::
 
-    unzip TERC.xml.zip
     pip install lxml
-    python manage.py load_teryt TERC.xml
-    rm TERC.xml*
+    python manage.py load_teryt --input TERC.xml
+
+To load SIMC register download valid database. Next to execute following commands::
+
+    python manage.py load_simc --input SIMC.xml
 
 Features
 --------
 
-* Import database from official exports
+* Import database from official exports - TERC and SIMC database.
 * Store data as modified pre-order traversal tree for effective region queery
 
 Cookiecutter Tools Used in Making This Package
