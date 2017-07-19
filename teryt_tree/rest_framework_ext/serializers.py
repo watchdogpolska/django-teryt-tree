@@ -32,3 +32,12 @@ class JednostkaAdministracyjnaSerializer(serializers.HyperlinkedModelSerializer)
                   'updated_on',
                   'active',
                   'level',)
+
+class SIMCSerializer(serializers.HyperlinkedModelSerializer):
+    simc = SIMCSerializer(many=True)
+    sym_pod = SIMCSerializer()
+    terc = JednostkaAdministracyjnaSerializer()
+
+    class Meta:
+        model = SIMC
+        fields = ['id', 'sym_pod', 'terc', 'name', 'updated_on']
