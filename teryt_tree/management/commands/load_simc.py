@@ -40,7 +40,8 @@ class Command(BaseCommand):
         root = etree.parse(input)
         self.stdout.write(("Importing started. This may take a few seconds. Please wait a moment.\n"))
         with transaction.atomic():
-            SIMC.objects.bulk_create(map(self.to_object, self.get_iter(root.iter('row'), no_progress)))
+            for x in (map(self.to_object, self.get_iter(root.iter('row'), no_progress))):
+                x.save()
 
     def get_iter(self, queryset, no_progress):
         return tqdm(queryset) if no_progress else queryset

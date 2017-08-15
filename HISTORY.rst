@@ -3,6 +3,13 @@
 History
 -------
 
+0.14.0 (2017-08-15)
+*******************
+
+* Fix update of SIMC registry
+* Fix compatibility of ``teryt_tree.est_framework_ext.viewsets.JednostkaAdministracyjnaFilter``
+* Add new format od TERC export
+
 0.13.2 (2017-08-11)
 *******************
 

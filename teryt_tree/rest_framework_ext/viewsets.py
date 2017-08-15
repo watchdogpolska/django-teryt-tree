@@ -5,7 +5,7 @@ from teryt_tree.models import JednostkaAdministracyjna
 from teryt_tree.rest_framework_ext.serializers import JednostkaAdministracyjnaSerializer
 
 
-def custom_area_filter(queryset, value):
+def custom_area_filter(queryset, _, value):
     if not value:
         return queryset
     return queryset.area(get_object_or_404(JednostkaAdministracyjna, pk=value))

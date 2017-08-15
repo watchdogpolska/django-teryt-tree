@@ -15,23 +15,30 @@ from teryt_tree.models import Category, JednostkaAdministracyjna
 
 
 class Command(BaseCommand):
-    help = 'Creates a data in database base on TERYT.xml file.'
+    help = 'Creates a data in database base on TERC.xml file.'
     PARENT_REDUCE = {2: 0,
                      4: 2,
                      7: 4}
     LEVEL_REDUCE = {2: 1,
                     4: 2,
                     7: 3}
+    FORMAT_MAP = {'nazwa_dod': 'nazdod'}
 
     def add_arguments(self, parser):
         parser.add_argument('--input', type=argparse.FileType('r'), nargs='?', help="Input XML-file")
+        parser.add_argument('--old-format', dest='old_format', action='store_true',
+                            help="Use format data of teryt.stat.gov.pl")
         parser.add_argument('--no-progress', dest='no_progress', action='store_false')
 
-    def to_object(self, row):
-        data = {x.get('name').lower(): x.text for x in row}
+    def to_object(self, row, old_format):
+        if old_format:
+            data = {x.get('name').lower(): x.text for x in row}
+        else:
+            data = {self.FORMAT_MAP.get(x.tag.lower(), x.tag.lower()): x.text.strip()
+                    for x in row}
         obj = JednostkaAdministracyjna()
         obj.active = True
-        obj.id = "".join(data.get(x, '') or '' for x in ('woj', 'pow', 'gmi', 'rodz'))
+        obj.id = "".join(data.get(x) or '' for x in ('woj', 'pow', 'gmi', 'rodz'))
         index = len(obj.pk)
         if len(obj.id) > 2:
             obj.parent_id = obj.id[:self.PARENT_REDUCE[index]]
@@ -45,12 +52,14 @@ class Command(BaseCommand):
         obj, _ = Category.objects.get_or_create(name=name, defaults={'level': level})
         return obj
 
-    def handle(self, no_progress, input, *args, **options):
+    def handle(self, no_progress, input, old_format, *args, **options):
         root = etree.parse(input)
         self.stdout.write(("Importing started. This may take a few seconds. Please wait a moment.\n"))
         with transaction.atomic():
             with JednostkaAdministracyjna.objects.delay_mptt_updates():
-                [item.save() for item in (map(self.to_object, self.get_iter(root.iter('row'), no_progress)))]
+                for row in self.get_iter(root.iter('row'), no_progress):
+                    item = self.to_object(row, old_format)
+                    item.save()
 
     def get_iter(self, items, no_progress):
         return tqdm(items) if no_progress else items
