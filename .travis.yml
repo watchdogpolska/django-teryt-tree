@@ -24,7 +24,7 @@ matrix:
     - env: TOX_ENV=py27-djmaster
     - env: TOX_ENV=py34-djmaster
 
-before_install:
+install:
   - pip install tox
 
 # command to run tests using coverage, e.g. python setup.py test
