@@ -34,7 +34,7 @@ class Command(BaseCommand):
         if old_format:
             data = {x.get('name').lower(): x.text for x in row}
         else:
-            data = {self.FORMAT_MAP.get(x.tag.lower(), x.tag.lower()): x.text.strip()
+            data = {self.FORMAT_MAP.get(x.tag.lower(), x.tag.lower()): (x.text or "").strip()
                     for x in row}
         obj = JednostkaAdministracyjna()
         obj.active = True
