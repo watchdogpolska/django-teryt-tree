@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import argparse
 from datetime import datetime
+from itertools import islice
 
 from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
@@ -21,14 +22,20 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument('--input', nargs='?', type=argparse.FileType('r'),
                             help="Input XML-file")
+        parser.add_argument('--old-format', dest='old_format', action='store_true',
+                            help="Use format data of teryt.stat.gov.pl")
         parser.add_argument('--no-progress', dest='no_progress', action='store_false')
 
     @lru_cache()
     def get_terc(self, terc_id):
         return JednostkaAdministracyjna.objects.get(id=terc_id)
 
-    def to_object(self, row):
-        data = {x.get('name').lower(): x.text for x in row}
+    def to_object(self, row, old_format):
+        if old_format:
+            data = {x.get('name').lower(): x.text for x in row}
+        else:
+            data = {x.tag.lower(): (x.text or "").strip() for x in row}
+
         terc_id = "".join(data.get(x, '') or '' for x in ('woj', 'pow', 'gmi', 'rodz_gmi'))
         terc = self.get_terc(terc_id)
         return SIMC(id=data['sym'],
@@ -36,12 +43,11 @@ class Command(BaseCommand):
                     terc=terc,
                     updated_on=datetime.strptime(data['stan_na'], '%Y-%m-%d'))
 
-    def handle(self, input, no_progress, *args, **options):
+    def handle(self, input, no_progress, old_format, *args, **options):
         root = etree.parse(input)
         self.stdout.write(("Importing started. This may take a few seconds. Please wait a moment.\n"))
-        with transaction.atomic():
-            for x in (map(self.to_object, self.get_iter(root.iter('row'), no_progress))):
-                x.save()
+        SIMC.objects.bulk_create(self.to_object(x, old_format)
+                                 for x in self.get_iter(root.iter('row'), no_progress))
 
     def get_iter(self, queryset, no_progress):
         return tqdm(queryset) if no_progress else queryset

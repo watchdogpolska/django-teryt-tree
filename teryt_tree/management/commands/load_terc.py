@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import argparse
+from itertools import islice
 
 from tqdm import tqdm
 from django.core.management.base import BaseCommand, CommandError
