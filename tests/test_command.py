@@ -25,7 +25,7 @@ class TestCommand(TestCase):
             os.makedirs(self.cache_dir)
 
     def download_file(self, kind):
-        fp = open(os.path.join(self.cache_dir,kind), 'wb')
+        fp = open(os.path.join(self.cache_dir, kind), 'wb')
         fp.write(self._get_url(self.data_url[kind]))
         fp.flush()
         return fp
@@ -33,7 +33,7 @@ class TestCommand(TestCase):
     def test_load_commands(self):
         fp = self.download_file('TERC.xml')
 
-        call_command('load_teryt', '--input', fp.name, '--no-progress')
+        call_command('load_terc', '--input', fp.name, '--no-progress')
 
         fp = self.download_file('SIMC.xml')
         call_command('load_simc', '--input', fp.name, '--no-progress')
