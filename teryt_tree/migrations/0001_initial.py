@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import migrations, models
+import django.db.models.deletion
 import autoslug.fields
 import mptt.fields
 
@@ -37,7 +38,7 @@ class Migration(migrations.Migration):
                 ('rght', models.PositiveIntegerField(editable=False, db_index=True)),
                 ('tree_id', models.PositiveIntegerField(editable=False, db_index=True)),
                 ('level', models.PositiveIntegerField(editable=False, db_index=True)),
-                ('category', models.ForeignKey(to='teryt_tree.Category')),
+                ('category', models.ForeignKey(to='teryt_tree.Category', on_delete=django.db.models.deletion.CASCADE)),
                 ('parent', mptt.fields.TreeForeignKey(related_name='children', blank=True, to='teryt_tree.JednostkaAdministracyjna', null=True)),
             ],
             options={

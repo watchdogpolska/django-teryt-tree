@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from autoslug import AutoSlugField
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext as _
@@ -52,9 +52,10 @@ class Category(models.Model):
 class JednostkaAdministracyjna(MPTTModel):
     id = models.CharField(max_length=7, primary_key=True)
     parent = TreeForeignKey('self', null=True, blank=True,
-                            related_name='children')
-    name = models.CharField(_('Name'), max_length=36,)
-    category = models.ForeignKey(Category)
+                            related_name='children',
+                            on_delete=models.CASCADE)
+    name = models.CharField(_('Name'), max_length=36)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     slug = AutoSlugField(populate_from='name', unique=True)
     updated_on = models.DateField(verbose_name=_("Updated date"))
     active = models.BooleanField(default=False)
@@ -77,8 +78,8 @@ class JednostkaAdministracyjna(MPTTModel):
 @python_2_unicode_compatible
 class SIMC(models.Model):
     id = models.CharField(max_length=7, primary_key=True)
-    sym_pod = models.ForeignKey('self', blank=True)
-    terc = models.ForeignKey(JednostkaAdministracyjna)
+    sym_pod = models.ForeignKey('self', blank=True, on_delete=models.CASCADE)
+    terc = models.ForeignKey(JednostkaAdministracyjna, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     updated_on = models.DateField(verbose_name=_("Updated date"))
 
