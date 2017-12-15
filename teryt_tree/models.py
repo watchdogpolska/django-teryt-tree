@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from autoslug import AutoSlugField
 try:
-    from django.conf.urls import reverse
-except ImportError:
     from django.urls import reverse
+except ImportError:  # For Django 1.8 (EOL "until April 2018")
+    from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext as _
