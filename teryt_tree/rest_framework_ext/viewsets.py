@@ -1,6 +1,10 @@
 import django_filters
 from django.shortcuts import get_object_or_404
-from rest_framework import filters, viewsets
+try:
+    from django_filters import rest_framework as filters
+except ImportError:  # Back-ward compatible for django-rest-framework<3.7
+    from rest_framework import filters
+from rest_framework import viewsets
 from teryt_tree.models import JednostkaAdministracyjna
 from teryt_tree.rest_framework_ext.serializers import JednostkaAdministracyjnaSerializer
 
