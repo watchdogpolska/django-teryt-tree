@@ -6,7 +6,7 @@ except ImportError:  # For Django 1.8 (EOL "until April 2018")
     from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
 from model_utils import Choices
 from mptt.managers import TreeManager
 from mptt.models import MPTTModel, TreeForeignKey
