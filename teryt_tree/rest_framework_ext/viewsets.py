@@ -1,12 +1,15 @@
 import django_filters
 from django.shortcuts import get_object_or_404
+from django.utils.translation import ugettext_lazy as _
+
 try:
     from django_filters import rest_framework as filters
 except ImportError:  # Back-ward compatible for django-rest-framework<3.7
     from rest_framework import filters
 from rest_framework import viewsets
 from teryt_tree.models import JednostkaAdministracyjna
-from teryt_tree.rest_framework_ext.serializers import JednostkaAdministracyjnaSerializer
+from teryt_tree.rest_framework_ext.serializers import \
+    JednostkaAdministracyjnaSerializer
 
 
 def custom_area_filter(queryset, _, value):
@@ -16,7 +19,10 @@ def custom_area_filter(queryset, _, value):
 
 
 class JednostkaAdministracyjnaFilter(filters.FilterSet):
-    area = django_filters.CharFilter(action=custom_area_filter)
+    area = django_filters.CharFilter(
+        method=custom_area_filter,
+        label=_("Area")
+    )
 
     class Meta:
         model = JednostkaAdministracyjna
