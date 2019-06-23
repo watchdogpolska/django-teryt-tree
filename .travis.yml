@@ -16,6 +16,9 @@ env:
   - TOX_ENV=py34-dj19
   - TOX_ENV=py34-dj110
   - TOX_ENV=py34-dj111
+  - TOX_ENV=py34-dj20
+  - TOX_ENV=py34-dj21
+  - TOX_ENV=py34-dj22
   - TOX_ENV=py27-djmaster
   - TOX_ENV=py34-djmaster
 
