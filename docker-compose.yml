@@ -1,0 +1,39 @@
+version: '2.1'
+# This is application’s services configuration for development purposes only.
+
+services:
+  db:
+    container_name: db
+    image: mysql:5.7
+    ports:
+      - "3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "password"
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u root --password=password
+      timeout: 20s
+      retries: 10
+    volumes:
+      - ./.contrib/docker/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:ro
+      - mysql_db:/var/lib/mysql
+
+  web:
+    build:
+      context: .
+      dockerfile: .contrib/docker/Dockerfile
+      args:
+        PYTHON_VERSION: '${PYTHON_VERSION:-3.7}'
+        DJANGO_VERSION: '${DJANGO_VERSION:-==2.2.*}'
+
+    volumes:
+      - .:/code
+    environment:
+      DATABASE_URL: mysql://root:password@db/teryt_tree
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  mysql_db:
