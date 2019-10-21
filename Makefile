@@ -15,7 +15,7 @@ build:
 	docker-compose build web
 
 test: assets
-	docker-compose run -v $$PWD/assets:/assets -e CACHE_DIR=/assets/ web python manage.py test --keepdb --verbosity=2 tests.test_command.TestCommand
+	docker-compose run -v $$PWD/assets:/assets -e CACHE_DIR=/assets/ web python manage.py test --keepdb --verbosity=2
 
 wait_mysql:
 	docker-compose run web bash -c 'wait-for-it db:3306'
