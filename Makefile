@@ -12,6 +12,8 @@ wait_mysql:
 migrate:
 	docker-compose run web python manage.py migrate
 
+lint:
+	docker-compose run web flake8 teryt_tree
 
 check: wait_mysql
 	docker-compose run web python manage.py makemigrations --check

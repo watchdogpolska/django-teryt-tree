@@ -8,6 +8,8 @@ from .models import JednostkaAdministracyjna
 
 class JednostkaAdministracyjnaAutocomplete(autocomplete_light.AutocompleteModelBase):
     search_fields = ['name']
+
+
 autocomplete_light.register(JednostkaAdministracyjna, JednostkaAdministracyjnaAutocomplete)
 
 
@@ -19,5 +21,6 @@ class CommunityAutocomplete(JednostkaAdministracyjnaAutocomplete):
     def choices_for_request(self):
         self.choices = self.choices.filter(category__level=3).select_related('parent')
         return super(CommunityAutocomplete, self).choices_for_request()
+
 
 autocomplete_light.register(JednostkaAdministracyjna, CommunityAutocomplete)

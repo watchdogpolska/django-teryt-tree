@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 import argparse
 from datetime import datetime
-from itertools import islice
 
 from django.core.management.base import BaseCommand, CommandError
-from django.db import transaction
 from django.utils.lru_cache import lru_cache
 from tqdm import tqdm
 
