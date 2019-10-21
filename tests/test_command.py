@@ -6,10 +6,12 @@ from django.test import TestCase
 
 
 class TestCommand(TestCase):
-    data_url = {'TERC_old.xml': 'http://cdn.files.jawne.info.pl/public_html/2017/07/13_01_48_33/TERC.xml',
-                'SIMC_old.xml': 'http://cdn.files.jawne.info.pl/public_html/2017/07/13_01_48_33/SIMC.xml',
-                'TERC.xml': 'http://cdn.files.jawne.info.pl/public_html/2017/12/03_05_43_05/TERC_Urzedowy_2017-12-03.xml',
-                'SIMC.xml': 'http://cdn.files.jawne.info.pl/public_html/2017/12/03_05_43_05/SIMC_Urzedowy_2017-12-03.xml'}
+    data_url = {
+        'TERC_old.xml': 'http://cdn.files.jawne.info.pl/public_html/2017/07/13_01_48_33/TERC.xml',
+        'SIMC_old.xml': 'http://cdn.files.jawne.info.pl/public_html/2017/07/13_01_48_33/SIMC.xml',
+        'TERC.xml': 'http://cdn.files.jawne.info.pl/public_html/2017/12/03_05_43_05/TERC_Urzedowy_2017-12-03.xml',
+        'SIMC.xml': 'http://cdn.files.jawne.info.pl/public_html/2017/12/03_05_43_05/SIMC_Urzedowy_2017-12-03.xml'
+    }
     cache_dir = os.environ.get('CACHE_DIR', tempfile.gettempdir())
 
     @staticmethod
