@@ -15,6 +15,10 @@ jobs:
         django:
           - "==2.1.*"
           - "==2.2.*"
+        include:
+          - python: 2.7
+            django: "==1.11.*"
+
     steps:
     - uses: actions/checkout@v1
     - name: Build application

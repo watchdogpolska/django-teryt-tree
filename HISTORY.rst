@@ -23,9 +23,9 @@ History
 0.13.0 (2017-07-13)
 *******************
 
-* Improve import performacne
-* Fix path of *.xml files (use on-premise TravisCI-cached copy)
+* Improve import performance
 * Add support to SIMC database
+* Fix path of ```*.xml``` files (use on-premise TravisCI-cached copy)
 
 0.12.1 (2017-04-04)
 *******************

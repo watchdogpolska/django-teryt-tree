@@ -9,11 +9,7 @@ ENV PYTHONUNBUFFERED 1
 RUN apt-get update \
 && apt-get install -y --no-install-recommends \
    default-libmysqlclient-dev \
-   gcc \
-   build-essential \
-   git \
-   curl \
-   gettext libgettextpo-dev wait-for-it \
+   wait-for-it \
 && rm -rf /var/lib/apt/lists/*
 COPY ./requirements*.txt ./
 ARG DJANGO_VERSION='==2.2.*'
