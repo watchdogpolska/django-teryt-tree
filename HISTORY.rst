@@ -3,6 +3,12 @@
 History
 -------
 
+0.15.1 (2019-10-21)
+*******************
+
+* Compatibility with Django 2.1, 2.2
+* Move CI to GitHub Actions
+
 0.14.0 (2017-08-15)
 *******************
 
