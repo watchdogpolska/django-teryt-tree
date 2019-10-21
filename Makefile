@@ -1,55 +1,26 @@
 .PHONY: clean-pyc clean-build docs
 
-help:
-	@echo "clean-build - remove build artifacts"
-	@echo "clean-pyc - remove Python file artifacts"
-	@echo "lint - check style with flake8"
-	@echo "test - run tests quickly with the default Python"
-	@echo "test-all - run tests on every Python version with tox"
-	@echo "coverage - check code coverage quickly with the default Python"
-	@echo "docs - generate Sphinx HTML documentation, including API docs"
-	@echo "release - package and upload a release"
-	@echo "sdist - package"
-
-clean: clean-build clean-pyc
-
-clean-build:
-	rm -fr build/
-	rm -fr dist/
-	rm -fr *.egg-info
-
-clean-pyc:
-	find . -name '*.pyc' -exec rm -f {} +
-	find . -name '*.pyo' -exec rm -f {} +
-	find . -name '*~' -exec rm -f {} +
-
-lint:
-	flake8 teryt_tree tests
+build: 
+	docker-compose build web
 
 test:
-	python runtests.py tests
+	docker-compose run web python manage.py test --keepdb --verbosity=2
 
-test-all:
-	tox
+wait_mysql:
+	docker-compose run web bash -c 'wait-for-it db:3306'
 
-coverage:
-	coverage run --source teryt_tree runtests.py tests
-	coverage report -m
-	coverage html
-	open htmlcov/index.html
+migrate:
+	docker-compose run web python manage.py migrate
+
+
+check: wait_mysql
+	docker-compose run web python manage.py makemigrations --check
+
+migrations: wait_mysql
+	docker-compose run web python manage.py makemigrations
+
+settings:
+	docker-compose run web python manage.py diffsettings
 
 docs:
-	rm -f docs/django-teryt-tree.rst
-	rm -f docs/modules.rst
-	sphinx-apidoc -o docs/ teryt_tree
-	$(MAKE) -C docs clean
-	$(MAKE) -C docs html
-	open docs/_build/html/index.html
-
-release: clean
-	python setup.py sdist upload
-	python setup.py bdist_wheel upload
-
-sdist: clean
-	python setup.py sdist
-	ls -l dist
+	docker-compose run web sphinx-build -b html -d docs/_build/doctrees docs docs/_build/html
