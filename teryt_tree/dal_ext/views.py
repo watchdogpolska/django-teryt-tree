@@ -1,7 +1,5 @@
-from __future__ import unicode_literals
 from dal import autocomplete
 from teryt_tree.models import JednostkaAdministracyjna
-from django.utils import six
 
 
 class VoivodeshipAutocomplete(autocomplete.Select2QuerySetView):
@@ -28,7 +26,7 @@ class CountyAutocomplete(autocomplete.Select2QuerySetView):
 
 class CommunityAutocomplete(autocomplete.Select2QuerySetView):
     def get_result_label(self, result):
-        return "%s (%s)" % (six.text_type(result), six.text_type(result.category))
+        return "{} ({})".format(str(result), str(result.category))
 
     def get_queryset(self):
         qs = JednostkaAdministracyjna.objects.community().select_related('category').all()

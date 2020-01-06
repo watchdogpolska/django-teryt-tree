@@ -1,5 +1,9 @@
 *.py[cod]
 __pycache__
+.idea
+
+Pipfile
+Pipfile.lock
 
 # C extensions
 *.so
