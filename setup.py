@@ -2,25 +2,13 @@
 
 import os
 import sys
-
-try:
-    from setuptools import setup
-except ImportError:
-    from distutils.core import setup
-
-version = "0.16.0"
-
-if sys.argv[-1] == "publish":
-    os.system("python setup.py sdist upload")
-    os.system("python setup.py bdist_wheel upload")
-    sys.exit()
+from setuptools import setup
 
 readme = open("README.rst").read()
 history = open("HISTORY.rst").read().replace(".. :changelog:", "")
 
 setup(
     name="django-teryt-tree",
-    version=version,
     description="Django-teryt-tree is a Django app that implements TERYT database as tree by django-mptt.",
     long_description=readme + "\n\n" + history,
     author="Adam Dobrawy",
@@ -28,6 +16,8 @@ setup(
     url="https://github.com/ad-m/django-teryt-tree",
     packages=["teryt_tree",],
     include_package_data=True,
+    use_scm_version=True,
+    setup_requires=["setuptools_scm", "wheel"],
     install_requires=["django-mptt", "django-model-utils", "django-autoslug", "tqdm"],
     download_url="https://github.com/ad-m/django-teryt-tree/tarball/%s" % (version),
     license="BSD",

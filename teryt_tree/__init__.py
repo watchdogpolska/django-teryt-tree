@@ -1,2 +1,6 @@
-__version__ = "0.16.0"
+try:
+    __version__ = get_distribution(__name__).version
+except DistributionNotFound:
+    # package is not installed
+    pass
 default_app_config = "teryt_tree.apps.TerytTreeConfig"
