@@ -2,26 +2,27 @@
 
 from django.db import migrations, models
 
+
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('teryt_tree', '0006_auto_20191020_1953'),
+        ("teryt_tree", "0006_auto_20191020_1953"),
     ]
 
     operations = [
-    migrations.AlterField(
-        model_name='jednostkaadministracyjna',
-        name='level',
-        field=models.PositiveIntegerField(editable=False),
-    ),
-    migrations.AlterField(
-        model_name='jednostkaadministracyjna',
-        name='lft',
-        field=models.PositiveIntegerField(editable=False),
-    ),
-    migrations.AlterField(
-        model_name='jednostkaadministracyjna',
-        name='rght',
-        field=models.PositiveIntegerField(editable=False),
-    ),
-]
+        migrations.AlterField(
+            model_name="jednostkaadministracyjna",
+            name="level",
+            field=models.PositiveIntegerField(editable=False),
+        ),
+        migrations.AlterField(
+            model_name="jednostkaadministracyjna",
+            name="lft",
+            field=models.PositiveIntegerField(editable=False),
+        ),
+        migrations.AlterField(
+            model_name="jednostkaadministracyjna",
+            name="rght",
+            field=models.PositiveIntegerField(editable=False),
+        ),
+    ]

@@ -1,11 +1,8 @@
 DEBUG = True
 USE_TZ = True
-SECRET_KEY = 'pQO26MjmglIoVGG40wrOmYOHYKr2R6EFOhxZHaFwlz6LpLvQ49'
+SECRET_KEY = "pQO26MjmglIoVGG40wrOmYOHYKr2R6EFOhxZHaFwlz6LpLvQ49"
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": "database.sqlite3"
-    }
+    "default": {"ENGINE": "django.db.backends.sqlite3", "NAME": "database.sqlite3"}
 }
 ROOT_URLCONF = "tests.urls"
 INSTALLED_APPS = [

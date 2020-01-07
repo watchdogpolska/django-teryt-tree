@@ -8,8 +8,7 @@ except ImportError:  # Back-ward compatible for django-rest-framework<3.7
     from rest_framework import filters
 from rest_framework import viewsets
 from teryt_tree.models import JednostkaAdministracyjna
-from teryt_tree.rest_framework_ext.serializers import \
-    JednostkaAdministracyjnaSerializer
+from teryt_tree.rest_framework_ext.serializers import JednostkaAdministracyjnaSerializer
 
 
 def custom_area_filter(queryset, _, value):
@@ -19,21 +18,19 @@ def custom_area_filter(queryset, _, value):
 
 
 class JednostkaAdministracyjnaFilter(filters.FilterSet):
-    area = django_filters.CharFilter(
-        method=custom_area_filter,
-        label=_("Area")
-    )
+    area = django_filters.CharFilter(method=custom_area_filter, label=_("Area"))
 
     class Meta:
         model = JednostkaAdministracyjna
-        fields = ['name', 'category', 'category__level', 'area']
+        fields = ["name", "category", "category__level", "area"]
 
 
 class JednostkaAdministracyjnaViewSet(viewsets.ModelViewSet):
-    queryset = (JednostkaAdministracyjna.objects.
-                select_related('category').
-                prefetch_related('children').
-                all())
+    queryset = (
+        JednostkaAdministracyjna.objects.select_related("category")
+        .prefetch_related("children")
+        .all()
+    )
     serializer_class = JednostkaAdministracyjnaSerializer
     filter_backends = (filters.DjangoFilterBackend,)
     filter_class = JednostkaAdministracyjnaFilter

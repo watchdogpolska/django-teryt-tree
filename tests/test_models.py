@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 """
 test_django-teryt-tree
@@ -16,7 +15,6 @@ from django.utils.encoding import force_text
 
 
 class JednostkaAdministracyjnaTestCase(TestCase):
-
     def test_string_representation(self):
         entry = models.JednostkaAdministracyjna(name="My entry title")
         self.assertEqual(force_text(entry), entry.name)

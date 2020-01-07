@@ -18,7 +18,7 @@ class CountyAutocomplete(autocomplete.Select2QuerySetView):
         if self.q:
             qs = qs.filter(name__istartswith=self.q)
 
-        voivodeship = self.forwarded.get('voivodeship', None)
+        voivodeship = self.forwarded.get("voivodeship", None)
         if voivodeship:
             return qs.filter(parent=voivodeship)
         return qs
@@ -29,12 +29,16 @@ class CommunityAutocomplete(autocomplete.Select2QuerySetView):
         return "{} ({})".format(str(result), str(result.category))
 
     def get_queryset(self):
-        qs = JednostkaAdministracyjna.objects.community().select_related('category').all()
+        qs = (
+            JednostkaAdministracyjna.objects.community()
+            .select_related("category")
+            .all()
+        )
 
         if self.q:
             qs = qs.filter(name__istartswith=self.q)
 
-        county = self.forwarded.get('county', None)
+        county = self.forwarded.get("county", None)
         if county:
             return qs.filter(parent=county)
         return qs

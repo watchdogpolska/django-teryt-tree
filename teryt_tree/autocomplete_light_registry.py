@@ -5,19 +5,22 @@ from .models import JednostkaAdministracyjna
 
 
 class JednostkaAdministracyjnaAutocomplete(autocomplete_light.AutocompleteModelBase):
-    search_fields = ['name']
+    search_fields = ["name"]
 
 
-autocomplete_light.register(JednostkaAdministracyjna, JednostkaAdministracyjnaAutocomplete)
+autocomplete_light.register(
+    JednostkaAdministracyjna, JednostkaAdministracyjnaAutocomplete
+)
 
 
 class CommunityAutocomplete(JednostkaAdministracyjnaAutocomplete):
     def choice_label(self, choice):
-        return "{parent} > {choice}".format(parent=force_text(choice.parent),
-                                            choice=force_text(choice))
+        return "{parent} > {choice}".format(
+            parent=force_text(choice.parent), choice=force_text(choice)
+        )
 
     def choices_for_request(self):
-        self.choices = self.choices.filter(category__level=3).select_related('parent')
+        self.choices = self.choices.filter(category__level=3).select_related("parent")
         return super().choices_for_request()
 
 

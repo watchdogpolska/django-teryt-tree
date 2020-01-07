@@ -1,6 +1,7 @@
 import os
 import sys
-os.environ['DJANGO_SETTINGS_MODULE'] = 'tests.settings'
+
+os.environ["DJANGO_SETTINGS_MODULE"] = "tests.settings"
 
 try:
     from django.conf import settings
@@ -8,6 +9,7 @@ try:
 
     try:
         import django
+
         setup = django.setup
     except AttributeError:
         pass
@@ -16,13 +18,14 @@ try:
 
 except ImportError:
     import traceback
+
     traceback.print_exc()
     raise ImportError("To fix this error, run: pip install -r requirements-test.txt")
 
 
 def run_tests(*test_args):
     if not test_args:
-        test_args = ['tests']
+        test_args = ["tests"]
 
     # Run tests
     TestRunner = get_runner(settings)
@@ -34,5 +37,5 @@ def run_tests(*test_args):
         sys.exit(bool(failures))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     run_tests(*sys.argv[1:])
