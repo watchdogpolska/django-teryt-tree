@@ -1,5 +1,4 @@
-# django-autoslug>=1.8.0
-https://github.com/Balu-Varanasi/django-autoslug/archive/9fb8528a9e2cc2bbad167595b9f7ef0ca1389dbc.zip
+django-autoslug>=1.9.6
 django-model-utils>=2.3.1
 django-mptt>=0.7.4
 factory-boy>=2.5.2
