@@ -3,6 +3,16 @@
 History
 -------
 
+0.16.1 (2020-01-07)
+*******************
+
+* Add workflows to publish on tags
+* Use setuptools_scm for versionig and drop bumpversion
+* Format syntax by black
+* Format migrations by pyupgrade
+* Add black to linter in CI
+* Fix migrations chain & upgrade for Django 3.0
+
 0.16.0 (2020-01-07)
 *******************
 
