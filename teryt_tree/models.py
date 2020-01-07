@@ -1,11 +1,7 @@
-# -*- coding: utf-8 -*-
 from autoslug import AutoSlugField
-try:
-    from django.urls import reverse
-except ImportError:  # For Django 1.8 (EOL "until April 2018")
-    from django.core.urlresolvers import reverse
+
+from django.urls import reverse
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 from model_utils import Choices
 from mptt.managers import TreeManager
@@ -34,7 +30,6 @@ class JednostkaAdministracyjnaQuerySet(models.QuerySet):
                            lft__range=(jst.lft, jst.rght))
 
 
-@python_2_unicode_compatible
 class Category(models.Model):
     LEVEL = Choices((1, 'voivodeship', _('voivodeship')),
                     (2, 'county', _('county')),
@@ -51,7 +46,6 @@ class Category(models.Model):
         verbose_name_plural = _('Categories')
 
 
-@python_2_unicode_compatible
 class JednostkaAdministracyjna(MPTTModel):
     id = models.CharField(max_length=7, primary_key=True)
     parent = TreeForeignKey('self', null=True, blank=True,
@@ -65,7 +59,7 @@ class JednostkaAdministracyjna(MPTTModel):
     objects = JednostkaAdministracyjnaManager.from_queryset(JednostkaAdministracyjnaQuerySet)()
 
     def __str__(self):
-        return u'{0}'.format(self.name)
+        return '{}'.format(self.name)
 
     def get_absolute_url(self):
         return reverse('teryt:details', kwargs={'slug': self.slug})
@@ -78,7 +72,6 @@ class JednostkaAdministracyjna(MPTTModel):
         verbose_name_plural = _('Units of administrative division')
 
 
-@python_2_unicode_compatible
 class SIMC(models.Model):
     id = models.CharField(max_length=7, primary_key=True)
     sym_pod = models.ForeignKey('self', blank=True, on_delete=models.CASCADE)

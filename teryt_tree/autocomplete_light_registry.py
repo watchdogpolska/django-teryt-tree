@@ -1,5 +1,3 @@
-from __future__ import unicode_literals
-
 from autocomplete_light import shortcuts as autocomplete_light
 from django.utils.encoding import force_text
 
@@ -20,7 +18,7 @@ class CommunityAutocomplete(JednostkaAdministracyjnaAutocomplete):
 
     def choices_for_request(self):
         self.choices = self.choices.filter(category__level=3).select_related('parent')
-        return super(CommunityAutocomplete, self).choices_for_request()
+        return super().choices_for_request()
 
 
 autocomplete_light.register(JednostkaAdministracyjna, CommunityAutocomplete)

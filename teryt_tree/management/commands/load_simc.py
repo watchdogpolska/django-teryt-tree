@@ -3,7 +3,7 @@ import argparse
 from datetime import datetime
 
 from django.core.management.base import BaseCommand, CommandError
-from django.utils.lru_cache import lru_cache
+from functools import lru_cache
 from tqdm import tqdm
 
 try:
@@ -43,7 +43,7 @@ class Command(BaseCommand):
 
     def handle(self, input, no_progress, old_format, *args, **options):
         root = etree.parse(input)
-        self.stdout.write(("Importing started. This may take a few seconds. Please wait a moment.\n"))
+        self.stdout.write("Importing started. This may take a few seconds. Please wait a moment.\n")
         SIMC.objects.bulk_create(self.to_object(x, old_format)
                                  for x in self.get_iter(root.iter('row'), no_progress))
 

@@ -4,7 +4,7 @@ import argparse
 from tqdm import tqdm
 from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
-from django.utils.lru_cache import lru_cache
+from functools import lru_cache
 
 try:
     from lxml import etree
@@ -54,7 +54,7 @@ class Command(BaseCommand):
 
     def handle(self, no_progress, input, old_format, *args, **options):
         root = etree.parse(input)
-        self.stdout.write(("Importing started. This may take a few seconds. Please wait a moment.\n"))
+        self.stdout.write("Importing started. This may take a few seconds. Please wait a moment.\n")
         with transaction.atomic():
             with JednostkaAdministracyjna.objects.delay_mptt_updates():
                 for row in self.get_iter(root.iter('row'), no_progress):

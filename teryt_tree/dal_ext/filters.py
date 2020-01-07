@@ -21,18 +21,18 @@ class VoivodeshipFilter(AreaFilter):
     def __init__(self, *args, **kwargs):
         label = kwargs.pop('label', _("Voivodeship"))
         queryset = kwargs.pop('queryset', JednostkaAdministracyjna.objects.voivodeship().all())
-        super(VoivodeshipFilter, self).__init__(*args, label=label, queryset=queryset, **kwargs)
+        super().__init__(*args, label=label, queryset=queryset, **kwargs)
 
 
 class CountyFilter(AreaFilter):
     def __init__(self, *args, **kwargs):
         label = kwargs.pop('label', _("County"))
         queryset = kwargs.pop('queryset', JednostkaAdministracyjna.objects.county().all())
-        super(CountyFilter, self).__init__(*args, label=label, queryset=queryset, **kwargs)
+        super().__init__(*args, label=label, queryset=queryset, **kwargs)
 
 
 class CommunityFilter(AreaFilter):
     def __init__(self, *args, **kwargs):
         label = kwargs.pop('label', _("Community"))
         queryset = kwargs.pop('queryset', JednostkaAdministracyjna.objects.community().all())
-        super(CommunityFilter, self).__init__(*args, label=label, queryset=queryset, **kwargs)
+        super().__init__(*args, label=label, queryset=queryset, **kwargs)

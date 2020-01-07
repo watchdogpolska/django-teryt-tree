@@ -1,6 +1,6 @@
 import django_filters
 
-from .models import JednostkaAdministracyjna
+from teryt_tree.models import JednostkaAdministracyjna
 
 
 class JSTModelChoice(django_filters.ModelChoiceFilter):
@@ -20,7 +20,7 @@ class JSTModelChoice(django_filters.ModelChoiceFilter):
         self.level = level
         kwargs['method'] = self.filter__area
         kwargs['queryset'] = self.get_queryset()
-        super(JSTModelChoice, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
     def limit_parent(self, value):
         qs = self.field.queryset
