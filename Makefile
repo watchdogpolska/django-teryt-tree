@@ -1,4 +1,4 @@
-.PHONY: clean-pyc clean-build docs
+.PHONY: clean-pyc clean-build docs build test
 
 clean:
 	docker-compose down
