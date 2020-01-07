@@ -43,4 +43,4 @@ settings:
 	docker-compose run web python manage.py diffsettings
 
 docs:
-	docker-compose run web sphinx-build -b html -d docs/_build/doctrees docs docs/_build/html
+	docker-compose run web sh -c 'pip install -e . && sphinx-build -b html -d docs/_build/doctrees docs docs/_build/html'
