@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 
-import os
-import sys
 from setuptools import setup
 
 readme = open("README.rst").read()
@@ -14,7 +12,7 @@ setup(
     author="Adam Dobrawy",
     author_email="naczelnik@jawnosc.tk",
     url="https://github.com/ad-m/django-teryt-tree",
-    packages=["teryt_tree",],
+    packages=["teryt_tree"],
     include_package_data=True,
     use_scm_version=True,
     setup_requires=["setuptools_scm", "wheel"],
