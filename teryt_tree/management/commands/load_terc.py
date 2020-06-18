@@ -69,4 +69,4 @@ class Command(BaseCommand):
                     item.save()
 
     def get_iter(self, items, no_progress):
-        return tqdm(items) if no_progress else items
+        return tqdm(items, file=self.stdout) if no_progress else items
