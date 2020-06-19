@@ -4,6 +4,11 @@ import tempfile
 from django.core.management import call_command
 from django.test import TestCase
 
+try:
+    from io import StringIO
+except ImportError:
+    from StringIO import StringIO
+
 
 class TestCommand(TestCase):
     data_url = {
@@ -44,15 +49,33 @@ class TestCommand(TestCase):
     def test_load_commands_for_old_format(self):
         fp = self.download_file("TERC_old.xml")
 
-        call_command("load_terc", "--old-format", "--input", fp.name, "--no-progress")
+        call_command(
+            "load_terc",
+            "--old-format",
+            "--input",
+            fp.name,
+            "--no-progress",
+            stdout=StringIO(),
+        )
 
         fp = self.download_file("SIMC_old.xml")
-        call_command("load_simc", "--old-format", "--input", fp.name, "--no-progress")
+        call_command(
+            "load_simc",
+            "--old-format",
+            "--input",
+            fp.name,
+            "--no-progress",
+            stdout=StringIO(),
+        )
 
     def test_load_commands_for_current_format(self):
         fp = self.download_file("TERC.xml")
 
-        call_command("load_terc", "--input", fp.name, "--no-progress")
+        call_command(
+            "load_terc", "--input", fp.name, "--no-progress", stdout=StringIO()
+        )
 
         fp = self.download_file("SIMC.xml")
-        call_command("load_simc", "--input", fp.name, "--no-progress")
+        call_command(
+            "load_simc", "--input", fp.name, "--no-progress", stdout=StringIO()
+        )
