@@ -12,7 +12,7 @@ class CategoryFactory(factory.django.DjangoModelFactory):
 
 class JednostkaAdministracyjnaFactory(factory.django.DjangoModelFactory):
     name = factory.Sequence(lambda n: "jst-{}".format(n))
-    pk = factory.Sequence(lambda n: n)
+    pk = factory.fuzzy.FuzzyText(length=7)
     category = factory.SubFactory(CategoryFactory)
     updated_on = "2015-05-12"
     active = True
