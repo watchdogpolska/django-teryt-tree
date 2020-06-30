@@ -4,6 +4,7 @@ from tqdm import tqdm
 from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
 from functools import lru_cache
+from itertools import islice
 
 try:
     from lxml import etree
@@ -28,6 +29,13 @@ class Command(BaseCommand):
             dest="old_format",
             action="store_true",
             help="Use format data of teryt.stat.gov.pl",
+        )
+        parser.add_argument(
+            "--limit",
+            dest="limit",
+            type=int,
+            default=5000,
+            help="Limit of rows inserted"
         )
         parser.add_argument("--no-progress", dest="no_progress", action="store_false")
 
@@ -57,14 +65,14 @@ class Command(BaseCommand):
         obj, _ = Category.objects.get_or_create(name=name, defaults={"level": level})
         return obj
 
-    def handle(self, no_progress, input, old_format, *args, **options):
+    def handle(self, no_progress, input, old_format, limit, *args, **options):
         root = etree.parse(input)
         self.stdout.write(
             "Importing started. This may take a few seconds. Please wait a moment.\n"
         )
         with transaction.atomic():
             with JednostkaAdministracyjna.objects.delay_mptt_updates():
-                for row in self.get_iter(root.iter("row"), no_progress):
+                for row in self.get_iter(islice(root.iter("row"), limit), no_progress):
                     item = self.to_object(row, old_format)
                     item.save()
 

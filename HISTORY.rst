@@ -7,6 +7,7 @@ History
 *******************
 
 * Fix `pk` in `JednostkaAdministracyjnaFactor` to use text
+* Add '--limit' parameter to 'load_terc' command
 
 0.16.2 (2020-06-19)
 *******************
