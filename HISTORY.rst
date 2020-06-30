@@ -3,6 +3,11 @@
 History
 -------
 
+0.16.3 (2020-06-30)
+*******************
+
+* Fix `pk` in `JednostkaAdministracyjnaFactor` to use text
+
 0.16.2 (2020-06-19)
 *******************
 
