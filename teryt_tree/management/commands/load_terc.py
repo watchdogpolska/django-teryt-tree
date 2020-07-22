@@ -75,6 +75,6 @@ class Command(BaseCommand):
                 for row in self.get_iter(islice(root.iter("row"), limit), no_progress):
                     item = self.to_object(row, old_format)
                     item.save()
-
+        input.close()
     def get_iter(self, items, no_progress):
         return tqdm(items, file=self.stdout) if no_progress else items

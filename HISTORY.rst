@@ -8,6 +8,7 @@ vNext
 
 * Fix deprecation warning for `django.utils.translation.ugettext_lazy`
 * Fix deprecation warning for defines `default_app_config`
+* Fix resource leak in tests
 
 0.17.0 (2020-11-03)
 *******************
