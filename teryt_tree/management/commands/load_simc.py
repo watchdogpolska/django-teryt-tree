@@ -58,6 +58,7 @@ class Command(BaseCommand):
             self.to_object(x, old_format)
             for x in self.get_iter(root.iter("row"), no_progress)
         )
+        input.close()
 
     def get_iter(self, queryset, no_progress):
         return tqdm(queryset) if no_progress else queryset

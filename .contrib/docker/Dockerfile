@@ -12,5 +12,8 @@ RUN apt-get update \
 && rm -rf /var/lib/apt/lists/*
 COPY ./requirements*.txt ./
 ARG DJANGO_VERSION='==2.2.*'
-RUN pip install --no-cache-dir "django${DJANGO_VERSION}" -r requirements-test.txt
+RUN bash -c "if [[ "${DJANGO_VERSION}" == 'master' ]]; then \
+pip install --no-cache-dir -r requirements-test.txt https://github.com/django/django/archive/master.tar.gz; else \
+pip install --no-cache-dir -r requirements-test.txt \"django${DJANGO_VERSION}\"; fi"
+ENV PYTHONWARNINGS=error
 CMD python manage.py runserver 0.0.0.0:8000

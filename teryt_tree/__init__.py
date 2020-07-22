@@ -5,4 +5,3 @@ try:
 except DistributionNotFound:
     # package is not installed
     pass
-default_app_config = "teryt_tree.apps.TerytTreeConfig"

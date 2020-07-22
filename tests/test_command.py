@@ -37,45 +37,47 @@ class TestCommand(TestCase):
 
     def download_file(self, kind):
         filepath = os.path.join(self.cache_dir, kind)
-        if os.path.exists(filepath):
+        if not os.path.exists(filepath):
+            print("Download to file {}\n".format(filepath))
+            with open(filepath, "wb") as fp:
+                fp.write(self._get_url(self.data_url[kind]))
+                fp.flush()
+        else:
             print("Reuse file {}\n".format(filepath))
-            return open(filepath, "rb")
-        fp = open(filepath, "wb")
-        print("Download to file {}\n".format(filepath))
-        fp.write(self._get_url(self.data_url[kind]))
-        fp.flush()
-        return fp
+        return filepath
 
     def test_load_commands_for_old_format(self):
-        fp = self.download_file("TERC_old.xml")
-
         call_command(
             "load_terc",
             "--old-format",
             "--input",
-            fp.name,
+            self.download_file("TERC_old.xml"),
             "--no-progress",
             stdout=StringIO(),
         )
 
-        fp = self.download_file("SIMC_old.xml")
         call_command(
             "load_simc",
             "--old-format",
             "--input",
-            fp.name,
+            self.download_file("SIMC_old.xml"),
             "--no-progress",
             stdout=StringIO(),
         )
 
     def test_load_commands_for_current_format(self):
-        fp = self.download_file("TERC.xml")
 
         call_command(
-            "load_terc", "--input", fp.name, "--no-progress", stdout=StringIO()
+            "load_terc",
+            "--input",
+            self.download_file("TERC.xml"),
+            "--no-progress",
+            stdout=StringIO(),
         )
-
-        fp = self.download_file("SIMC.xml")
         call_command(
-            "load_simc", "--input", fp.name, "--no-progress", stdout=StringIO()
+            "load_simc",
+            "--input",
+            self.download_file("SIMC.xml"),
+            "--no-progress",
+            stdout=StringIO(),
         )

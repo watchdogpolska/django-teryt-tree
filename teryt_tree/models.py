@@ -2,7 +2,7 @@ from autoslug import AutoSlugField
 
 from django.urls import reverse
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from model_utils import Choices
 from mptt.managers import TreeManager
 from mptt.models import MPTTModel, TreeForeignKey

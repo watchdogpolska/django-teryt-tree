@@ -3,6 +3,13 @@
 History
 -------
 
+0.16.4 (2020-07-23)
+*******************
+
+* Fix deprecation warning for `django.utils.translation.ugettext_lazy`
+* Fix deprecation warning for defines `default_app_config`
+* Fix resource leak in tests
+
 0.16.3 (2020-06-30)
 *******************
 
