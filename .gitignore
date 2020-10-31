@@ -1,3 +1,7 @@
+# Project specific downloads
+assets
+
+# Python specific
 *.py[cod]
 __pycache__
 .idea
