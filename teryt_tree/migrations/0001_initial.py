@@ -38,7 +38,10 @@ class Migration(migrations.Migration):
                     ),
                 ),
             ],
-            options={"verbose_name": "Kategoria", "verbose_name_plural": "Kategorie",},
+            options={
+                "verbose_name": "Kategoria",
+                "verbose_name_plural": "Kategorie",
+            },
         ),
         migrations.CreateModel(
             name="JednostkaAdministracyjna",

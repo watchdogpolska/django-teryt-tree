@@ -35,7 +35,7 @@ class Command(BaseCommand):
             dest="limit",
             type=int,
             default=5000,
-            help="Limit of rows inserted"
+            help="Limit of rows inserted",
         )
         parser.add_argument("--no-progress", dest="no_progress", action="store_false")
 
