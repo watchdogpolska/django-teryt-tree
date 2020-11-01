@@ -10,6 +10,7 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sites",
     "teryt_tree",
+    "tests",
 ]
 SITE_ID = 1
 MIDDLEWARE_CLASSES = ()
