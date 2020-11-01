@@ -31,6 +31,7 @@ class AreaFilter(ModelChoiceFilter):
         This method is not automatically injected to the queryset.
         It merely serves as a sample implementation of an `area` filter.
         """
+
         def with_area_field(path):
             if area_field is None:
                 return path
@@ -40,7 +41,7 @@ class AreaFilter(ModelChoiceFilter):
         return queryset.filter(
             **{
                 with_area_field("tree_id"): value.tree_id,
-                with_area_field("lft__range"): (value.lft, value.rght)
+                with_area_field("lft__range"): (value.lft, value.rght),
             }
         )
 
@@ -50,6 +51,7 @@ class AreaMultipleFilter(ModelMultipleChoiceFilter):
     Multiple choice filter for JSTs.
     The queryset should implement a `area_in` method.
     """
+
     def __init__(self, *args, **kwargs):
         label = kwargs.pop("label", _("Area"))
         required = kwargs.pop("required", False)
@@ -75,6 +77,7 @@ class AreaMultipleFilter(ModelMultipleChoiceFilter):
         This method is not automatically injected to the queryset.
         It merely serves as a sample implementation of an `area_in` filter.
         """
+
         def with_area_field(path):
             if area_field is None:
                 return path
@@ -88,12 +91,14 @@ class AreaMultipleFilter(ModelMultipleChoiceFilter):
             reduce(
                 lambda x, y: x | y,
                 [
-                    Q(**{
-                        with_area_field("tree_id"): jst.tree_id,
-                        with_area_field("lft__range"): (jst.lft, jst.rght)
-                    })
+                    Q(
+                        **{
+                            with_area_field("tree_id"): jst.tree_id,
+                            with_area_field("lft__range"): (jst.lft, jst.rght),
+                        }
+                    )
                     for jst in value
-                ]
+                ],
             )
         )
 
