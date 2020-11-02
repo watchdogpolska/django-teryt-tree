@@ -3,6 +3,13 @@
 History
 -------
 
+0.16.4 (2020-11-02)
+*******************
+
+* Add support for MultipleChoice filters in ``dal_ext``
+* Add unit tests for ``dal_ext``
+* Expose area queryset filters as static methods.
+
 0.16.3 (2020-06-30)
 *******************
 
