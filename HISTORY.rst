@@ -3,7 +3,7 @@
 History
 -------
 
-0.16.4 (2020-11-02)
+0.17.0 (2020-11-03)
 *******************
 
 * Add support for MultipleChoice filters in ``dal_ext``
