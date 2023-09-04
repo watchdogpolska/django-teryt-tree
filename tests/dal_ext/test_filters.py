@@ -3,6 +3,7 @@ from django_filters.filterset import FilterSet
 
 from teryt_tree import factories
 from teryt_tree.dal_ext import filters
+import django
 
 from ..models import TestModel
 
@@ -37,6 +38,9 @@ class AreaFilterTestCase(TestCase):
         self.model_1_child = TestModel.objects.create(area=self.jst_1_child)
         self.model_2 = TestModel.objects.create(area=self.jst_2)
 
+        if django.VERSION < (4, 2):
+            self.assertQuerySetEqual = self.assertQuerysetEqual
+
     def assertQsIdsEqual(self, qs, objects):
         return self.assertQuerySetEqual(
             qs, [o.pk for o in objects], lambda o: o.pk, ordered=False
@@ -66,6 +70,9 @@ class AreaMultipleFilterTestCase(TestCase):
         self.model_1 = TestModel.objects.create(area=self.jst_1)
         self.model_1_child = TestModel.objects.create(area=self.jst_1_child)
         self.model_2 = TestModel.objects.create(area=self.jst_2)
+
+        if django.VERSION < (4, 2):
+            self.assertQuerySetEqual = self.assertQuerysetEqual
 
     def assertQsIdsEqual(self, qs, objects):
         return self.assertQuerySetEqual(
