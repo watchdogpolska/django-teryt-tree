@@ -38,7 +38,7 @@ class AreaFilterTestCase(TestCase):
         self.model_2 = TestModel.objects.create(area=self.jst_2)
 
     def assertQsIdsEqual(self, qs, objects):
-        return self.assertQuerysetEqual(
+        return self.assertQuerySetEqual(
             qs, [o.pk for o in objects], lambda o: o.pk, ordered=False
         )
 
@@ -68,7 +68,7 @@ class AreaMultipleFilterTestCase(TestCase):
         self.model_2 = TestModel.objects.create(area=self.jst_2)
 
     def assertQsIdsEqual(self, qs, objects):
-        return self.assertQuerysetEqual(
+        return self.assertQuerySetEqual(
             qs, [o.pk for o in objects], lambda o: o.pk, ordered=False
         )
 
