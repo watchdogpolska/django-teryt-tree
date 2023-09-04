@@ -22,8 +22,8 @@ services:
       context: .
       dockerfile: .contrib/docker/Dockerfile
       args:
-        PYTHON_VERSION: '${PYTHON_VERSION:-3.7}'
-        DJANGO_VERSION: '${DJANGO_VERSION:-==2.2.*}'
+        PYTHON_VERSION: '${PYTHON_VERSION:-3.11}'
+        DJANGO_VERSION: '${DJANGO_VERSION:-==4.2.*}'
 
     volumes:
       - .:/code
@@ -31,9 +31,6 @@ services:
       DATABASE_URL: mysql://root:password@db/teryt_tree
     ports:
       - "8000:8000"
-    depends_on:
-      db:
-        condition: service_healthy
 
 volumes:
   mysql_db:
