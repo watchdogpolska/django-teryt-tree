@@ -33,4 +33,4 @@ class JednostkaAdministracyjnaViewSet(viewsets.ModelViewSet):
     )
     serializer_class = JednostkaAdministracyjnaSerializer
     filter_backends = (filters.DjangoFilterBackend,)
-    filter_class = JednostkaAdministracyjnaFilter
+    filterset_class = JednostkaAdministracyjnaFilter
