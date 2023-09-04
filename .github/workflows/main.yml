@@ -10,12 +10,9 @@ jobs:
       fail-fast: false
       matrix:
         python: 
-          - 3.8
-          - 3.9
           - 3.10
           - 3.11
         django:
-          - "==3.2.*"
           - "==4.1.*"
           - "==4.2.*"
     steps:
