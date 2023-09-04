@@ -31,6 +31,9 @@ services:
       DATABASE_URL: mysql://root:password@db/teryt_tree
     ports:
       - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
 
 volumes:
   mysql_db:
