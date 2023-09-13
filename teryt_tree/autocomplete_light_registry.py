@@ -1,5 +1,5 @@
 from autocomplete_light import shortcuts as autocomplete_light
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 
 from .models import JednostkaAdministracyjna
 
@@ -16,7 +16,7 @@ autocomplete_light.register(
 class CommunityAutocomplete(JednostkaAdministracyjnaAutocomplete):
     def choice_label(self, choice):
         return "{parent} > {choice}".format(
-            parent=force_text(choice.parent), choice=force_text(choice)
+            parent=force_str(choice.parent), choice=force_str(choice)
         )
 
     def choices_for_request(self):

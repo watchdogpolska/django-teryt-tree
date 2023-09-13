@@ -1,5 +1,4 @@
 -r requirements.txt
 tqdm
-mock>=1.0.1
 flake8>=2.1.0
 lxml>=2.3.3

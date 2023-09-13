@@ -6,16 +6,17 @@ jobs:
   django:
     runs-on: ubuntu-latest
     strategy:
-      max-parallel: 4
       fail-fast: false
       matrix:
         python: 
-          - 3.6
-          - 3.7
-          - 3.8
+          - '3.11'
         django:
-          - "==2.2.*"
-          - "==3.0.*"
+          - "==4.1.*"
+          - "==4.2.*"
+        include:
+          - django: "==3.2.*"
+            python: '3.10'
+            # Python 3.11 & Django 3.2 raises deprecation warning about deprecated 'cgi' for Python 3.13
     steps:
     - uses: actions/checkout@v1
     - name: Build application

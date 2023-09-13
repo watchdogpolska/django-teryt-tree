@@ -22,8 +22,8 @@ services:
       context: .
       dockerfile: .contrib/docker/Dockerfile
       args:
-        PYTHON_VERSION: '${PYTHON_VERSION:-3.7}'
-        DJANGO_VERSION: '${DJANGO_VERSION:-==2.2.*}'
+        PYTHON_VERSION: '${PYTHON_VERSION:-3.11}'
+        DJANGO_VERSION: '${DJANGO_VERSION:-==4.2.*}'
 
     volumes:
       - .:/code
