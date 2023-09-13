@@ -6,13 +6,13 @@ jobs:
   django:
     runs-on: ubuntu-latest
     strategy:
-      max-parallel: 4
       fail-fast: false
       matrix:
         python: 
           - '3.10'
           - '3.11'
         django:
+          - "==3.2.*"
           - "==4.1.*"
           - "==4.2.*"
     steps:
