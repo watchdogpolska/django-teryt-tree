@@ -33,6 +33,8 @@ jobs:
 
     - name: Build test
       run: make test
+    - name: Build package
+      run: make build-pkg
 
   docs:
     runs-on: ubuntu-latest
