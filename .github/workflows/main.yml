@@ -36,6 +36,11 @@ jobs:
     - name: Build package
       run: make build-pkg
 
+    - uses: actions/upload-artifact@v3
+      with:
+        name: distribution
+        path: dist
+
   docs:
     runs-on: ubuntu-latest
     steps:
