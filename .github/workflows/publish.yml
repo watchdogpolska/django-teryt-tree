@@ -2,6 +2,8 @@ name: Publish Python 🐍 package
 
 on:
   push:
+    branches:
+      - '*'
     tags:
     - 'v*'
 
@@ -20,14 +22,13 @@ jobs:
       run: make build_pkg
 
     - name: Publish distribution 📦 to PyPI
-      if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
+      if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags/v')
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
         user: __token__
         password: ${{ secrets.pypi_password }}
 
     - name: Publish distribution 📦 to Test PyPI
-      if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
         user: __token__
