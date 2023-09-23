@@ -18,7 +18,6 @@ setup(
     setup_requires=["setuptools_scm", "wheel"],
     install_requires=["django-mptt", "django-model-utils", "django-autoslug", "tqdm"],
     download_url="https://github.com/ad-m/django-teryt-tree/",
-    license="BSD",
     zip_safe=False,
     keywords="django-teryt-tree",
     classifiers=[

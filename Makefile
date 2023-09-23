@@ -14,6 +14,10 @@ assets:
 build:
 	docker-compose build web
 
+build_pkg:
+	python -m pip install --upgrade build
+	python -m build
+
 test: assets
 	docker-compose run -v $$PWD/assets:/assets -e PYTHONWARNINGS=error -e CACHE_DIR=/assets/ web python manage.py test --keepdb --verbosity=2
 

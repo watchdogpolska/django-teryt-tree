@@ -1,0 +1,39 @@
+[project]
+dynamic = ["version"]
+name = "django-teryt-tree"
+readme = "README.rst"
+authors = [
+  { name="Adam Dobrawy", email="adam.dobrawy@siecobywatelska.pl" },
+]
+description = 'Django-teryt-tree is a Django app that implements TERYT database as tree by django-mptt.'
+dependencies = ['django-mptt', 'django-model-utils', 'django-autoslug', 'tqdm']
+requires-python = ">=3.10"
+classifiers = [
+    'Development Status :: 5 - Production/Stable',
+    'Environment :: Web Environment',
+    'Intended Audience :: Developers',
+    'License :: OSI Approved :: BSD License',
+    'Natural Language :: Polish',
+    'Framework :: Django',
+    'Framework :: Django :: 3.2',
+    'Framework :: Django :: 4.1',
+    'Framework :: Django :: 4.2',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.10',
+    'Programming Language :: Python :: 3.11'
+]
+keywords = ['django-teryt-tree']
+license = {file = "LICENSE"}
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["teryt_tree*", "teryt_tree.locale.pl.LC_MESSAGES"]
+
+[tool.setuptools_scm]
+write_to = "teryt_tree/_version.py"
+
+[build-system]
+requires = ["setuptools>=45", "setuptools_scm[toml]>=6.2"]
