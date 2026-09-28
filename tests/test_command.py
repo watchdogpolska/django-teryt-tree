@@ -4,10 +4,30 @@ import tempfile
 from django.core.management import call_command
 from django.test import TestCase
 
+from teryt_tree.models import JednostkaAdministracyjna
+
 try:
     from io import StringIO
 except ImportError:
     from StringIO import StringIO
+
+
+TERC_XML_TEMPLATE = """<?xml version="1.0" encoding="UTF-8"?>
+<data>
+{rows}
+</data>
+"""
+
+TERC_ROW_TEMPLATE = """<row>
+<WOJ>{woj}</WOJ>
+<POW></POW>
+<GMI></GMI>
+<RODZ></RODZ>
+<NAZWA>{nazwa}</NAZWA>
+<NAZWA_DOD>wojewodztwo</NAZWA_DOD>
+<STAN_NA>2020-01-01</STAN_NA>
+</row>
+"""
 
 
 class TestCommand(TestCase):
@@ -81,3 +101,67 @@ class TestCommand(TestCase):
             "--no-progress",
             stdout=StringIO(),
         )
+
+
+class TestLoadTercDeactivation(TestCase):
+    def write_terc_file(self, wojs):
+        rows = "".join(
+            TERC_ROW_TEMPLATE.format(woj=woj, nazwa="Region {}".format(woj))
+            for woj in wojs
+        )
+        fp = tempfile.NamedTemporaryFile(
+            mode="w", suffix=".xml", delete=False, encoding="utf-8"
+        )
+        fp.write(TERC_XML_TEMPLATE.format(rows=rows))
+        fp.close()
+        self.addCleanup(os.unlink, fp.name)
+        return fp.name
+
+    def load_terc(self, wojs):
+        call_command(
+            "load_terc",
+            "--input",
+            self.write_terc_file(wojs),
+            "--no-progress",
+            stdout=StringIO(),
+        )
+
+    def test_units_missing_from_new_import_are_deactivated(self):
+        self.load_terc(["02", "04"])
+        self.assertTrue(
+            JednostkaAdministracyjna.objects.get(id="02").active
+        )
+        self.assertTrue(
+            JednostkaAdministracyjna.objects.get(id="04").active
+        )
+
+        self.load_terc(["02"])
+
+        self.assertTrue(JednostkaAdministracyjna.objects.get(id="02").active)
+        self.assertFalse(JednostkaAdministracyjna.objects.get(id="04").active)
+
+    def test_reappearing_unit_is_reactivated(self):
+        self.load_terc(["02", "04"])
+        self.load_terc(["02"])
+        self.assertFalse(JednostkaAdministracyjna.objects.get(id="04").active)
+
+        self.load_terc(["02", "04"])
+
+        self.assertTrue(JednostkaAdministracyjna.objects.get(id="04").active)
+
+    def test_truncated_import_does_not_deactivate_missing_units(self):
+        self.load_terc(["02", "04"])
+
+        call_command(
+            "load_terc",
+            "--input",
+            self.write_terc_file(["02", "06", "08"]),
+            "--no-progress",
+            "--limit",
+            "2",
+            stdout=StringIO(),
+        )
+
+        # The file has 3 rows but --limit cut it to 2, so "04" was never
+        # seen in this run and must not be deactivated.
+        self.assertTrue(JednostkaAdministracyjna.objects.get(id="04").active)

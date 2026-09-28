@@ -70,11 +70,24 @@ class Command(BaseCommand):
         self.stdout.write(
             "Importing started. This may take a few seconds. Please wait a moment.\n"
         )
+        rows = list(root.iter("row"))
+        truncated = len(rows) > limit
+        seen_ids = set()
         with transaction.atomic():
             with JednostkaAdministracyjna.objects.delay_mptt_updates():
-                for row in self.get_iter(islice(root.iter("row"), limit), no_progress):
+                for row in self.get_iter(islice(rows, limit), no_progress):
                     item = self.to_object(row, old_format)
                     item.save()
+                    seen_ids.add(item.pk)
+                if truncated:
+                    self.stdout.write(
+                        "Skipping deactivation of missing units because the "
+                        "import was truncated by --limit.\n"
+                    )
+                else:
+                    JednostkaAdministracyjna.objects.filter(active=True).exclude(
+                        id__in=seen_ids
+                    ).update(active=False)
         input.close()
 
     def get_iter(self, items, no_progress):
