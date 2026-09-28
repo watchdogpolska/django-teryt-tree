@@ -66,6 +66,11 @@ class Command(BaseCommand):
         return obj
 
     def handle(self, no_progress, input, old_format, limit, *args, **options):
+        if input is None:
+            raise CommandError(
+                "No input file given. Please, provide a path to a TERC XML file "
+                "using the --input option."
+            )
         root = etree.parse(input)
         self.stdout.write(
             "Importing started. This may take a few seconds. Please wait a moment.\n"
