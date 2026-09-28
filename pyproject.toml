@@ -6,7 +6,7 @@ authors = [
   { name="Adam Dobrawy", email="adam.dobrawy@siecobywatelska.pl" },
 ]
 description = 'Django-teryt-tree is a Django app that implements TERYT database as tree by django-mptt.'
-dependencies = ['django-mptt', 'django-model-utils', 'django-autoslug', 'tqdm']
+dependencies = ['django-mptt>=0.16', 'django-model-utils>=4.3', 'django-autoslug>=1.9.9', 'tqdm>=4.60']
 requires-python = ">=3.10"
 classifiers = [
     'Development Status :: 5 - Production/Stable',
@@ -15,12 +15,14 @@ classifiers = [
     'License :: OSI Approved :: BSD License',
     'Natural Language :: Polish',
     'Framework :: Django',
-    'Framework :: Django :: 3.2',
-    'Framework :: Django :: 4.1',
     'Framework :: Django :: 4.2',
+    'Framework :: Django :: 5.1',
+    'Framework :: Django :: 5.2',
     'Programming Language :: Python :: 3',
     'Programming Language :: Python :: 3.10',
-    'Programming Language :: Python :: 3.11'
+    'Programming Language :: Python :: 3.11',
+    'Programming Language :: Python :: 3.12',
+    'Programming Language :: Python :: 3.13'
 ]
 keywords = ['django-teryt-tree']
 license = {file = "LICENSE"}

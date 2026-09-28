@@ -1,4 +1,4 @@
 -r requirements.txt
-tqdm
-flake8>=2.1.0
-lxml>=2.3.3
+tqdm>=4.60
+flake8>=6.0
+lxml>=5.0
