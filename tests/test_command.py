@@ -128,12 +128,8 @@ class TestLoadTercDeactivation(TestCase):
 
     def test_units_missing_from_new_import_are_deactivated(self):
         self.load_terc(["02", "04"])
-        self.assertTrue(
-            JednostkaAdministracyjna.objects.get(id="02").active
-        )
-        self.assertTrue(
-            JednostkaAdministracyjna.objects.get(id="04").active
-        )
+        self.assertTrue(JednostkaAdministracyjna.objects.get(id="02").active)
+        self.assertTrue(JednostkaAdministracyjna.objects.get(id="04").active)
 
         self.load_terc(["02"])
 
