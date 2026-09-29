@@ -1,4 +1,5 @@
 -r requirements.txt
-tqdm>=4.60
+factory-boy>=3.2
+Sphinx>=7.0
 flake8>=6.0
 lxml>=5.0

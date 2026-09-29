@@ -1,6 +1,5 @@
 django-autoslug>=1.9.9
 django-model-utils>=4.3
 django-mptt>=0.16
-factory-boy>=3.2
-Sphinx>=7.0
+tqdm>=4.60
 django-filter>=23.1
