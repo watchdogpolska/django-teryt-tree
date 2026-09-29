@@ -18,7 +18,11 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument(
-            "--input", nargs="?", type=argparse.FileType("r"), help="Input XML-file"
+            "--input",
+            nargs="?",
+            type=argparse.FileType("r"),
+            required=True,
+            help="Input XML-file",
         )
         parser.add_argument(
             "--old-format",
@@ -50,11 +54,6 @@ class Command(BaseCommand):
         )
 
     def handle(self, input, no_progress, old_format, *args, **options):
-        if input is None:
-            raise CommandError(
-                "No input file given. Please, provide a path to a SIMC XML file "
-                "using the --input option."
-            )
         root = etree.parse(input)
         self.stdout.write(
             "Importing started. This may take a few seconds. Please wait a moment.\n"
