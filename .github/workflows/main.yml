@@ -19,6 +19,8 @@ jobs:
             # Python 3.11 & Django 3.2 raises deprecation warning about deprecated 'cgi' for Python 3.13
     steps:
     - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
     - name: Build application
       run: make build
       env:
