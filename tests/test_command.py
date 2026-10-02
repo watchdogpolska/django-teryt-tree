@@ -2,6 +2,7 @@ import os
 import tempfile
 
 from django.core.management import call_command
+from django.core.management.base import CommandError
 from django.test import TestCase
 
 try:
@@ -81,3 +82,11 @@ class TestCommand(TestCase):
             "--no-progress",
             stdout=StringIO(),
         )
+
+    def test_load_terc_without_input_raises_command_error(self):
+        with self.assertRaises(CommandError):
+            call_command("load_terc", "--no-progress", stdout=StringIO())
+
+    def test_load_simc_without_input_raises_command_error(self):
+        with self.assertRaises(CommandError):
+            call_command("load_simc", "--no-progress", stdout=StringIO())

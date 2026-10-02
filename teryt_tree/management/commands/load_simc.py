@@ -18,7 +18,11 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument(
-            "--input", nargs="?", type=argparse.FileType("r"), help="Input XML-file"
+            "--input",
+            nargs="?",
+            type=argparse.FileType("r"),
+            required=True,
+            help="Input XML-file",
         )
         parser.add_argument(
             "--old-format",
