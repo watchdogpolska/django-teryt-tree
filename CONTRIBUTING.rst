@@ -66,7 +66,7 @@ Ready to contribute? Here's how to set up `django-teryt-tree` for local developm
 
     $ mkvirtualenv django-teryt-tree
     $ cd django-teryt-tree/
-    $ python setup.py develop
+    $ pip install -e .
 
 4. Create a branch for local development::
 
@@ -77,11 +77,8 @@ Now you can make your changes locally.
 5. When you're done making changes, check that your changes pass flake8 and the
 tests, including testing other Python versions with tox::
 
-    $ flake8 teryt_tree tests
-    $ python setup.py test
-    $ tox
-
-To get flake8 and tox, just pip install them into your virtualenv. 
+    $ make lint
+    $ make test
 
 6. Commit your changes and push your branch to GitHub::
 
@@ -100,9 +97,8 @@ Before you submit a pull request, check that it meets these guidelines:
 2. If the pull request adds functionality, the docs should be updated. Put
    your new functionality into a function with a docstring, and add the
    feature to the list in README.rst.
-3. The pull request should work for Python 2.6, 2.7, and 3.3, and for PyPy. Check 
-   https://travis-ci.org/ad-m/django-teryt-tree/pull_requests
-   and make sure that the tests pass for all supported Python versions.
+3. Make sure the GitHub Actions checks pass for all supported Python and
+   Django versions.
 
 Tips
 ----
@@ -110,3 +106,30 @@ Tips
 To run a subset of tests::
 
     $ make test
+
+Releasing
+---------
+
+Versions are derived from git tags by ``setuptools_scm``; there is no version
+to edit in the code.
+
+1. Add an entry to ``HISTORY.rst`` and merge it to ``master``.
+2. Make sure CI on ``master`` is green.
+3. Tag and push (the tag must start with ``v``)::
+
+    $ git checkout master && git pull
+    $ git tag -a v0.19.0 -m "v0.19.0"
+    $ git push origin v0.19.0
+
+4. The ``Publish Python package`` workflow builds the distribution, uploads it
+   to Test PyPI and then to PyPI.
+5. Verify the release at https://pypi.org/project/django-teryt-tree/ and create
+   a GitHub release from the tag.
+
+Publishing uses PyPI `trusted publishing`_ (OIDC), so no API tokens are stored.
+One-time maintainer setup: add a trusted publisher for this repository and the
+``publish.yml`` workflow on both PyPI (environment ``pypi``) and Test PyPI
+(environment ``testpypi``), and create these two environments in the GitHub
+repository settings.
+
+.. _trusted publishing: https://docs.pypi.org/trusted-publishers/
