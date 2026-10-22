@@ -3,6 +3,14 @@
 History
 -------
 
+0.18.2 (2026-10-02)
+*******************
+
+* Fix ``load_terc`` crashing when ``--input`` is missing; it now reports a proper command error
+* Fix release pipeline: publish on ``v*`` tags only, without local versions, using PyPI trusted publishing
+* Remove legacy ``setup.py`` and ``tox.ini``; packaging is defined in ``pyproject.toml``
+* Document release process in ``CONTRIBUTING.rst``
+
 0.18.1 (2023-09-24)
 *******************
 
