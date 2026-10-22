@@ -34,6 +34,7 @@ include = ["teryt_tree*", "teryt_tree.locale.pl.LC_MESSAGES"]
 
 [tool.setuptools_scm]
 write_to = "teryt_tree/_version.py"
+local_scheme = "no-local-version"
 
 [build-system]
 requires = ["setuptools>=45", "setuptools_scm[toml]>=6.2"]
