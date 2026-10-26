@@ -1,5 +1,5 @@
 # This is Dockerfile for development purposes only.
-ARG PYTHON_VERSION='3.10'
+ARG PYTHON_VERSION='3.11'
 FROM python:${PYTHON_VERSION}
 RUN mkdir /code /code/production
 WORKDIR /code

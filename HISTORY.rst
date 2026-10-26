@@ -3,14 +3,17 @@
 History
 -------
 
-0.18.5 (2026-10-26)
+0.19.0 (2026-10-26)
 *******************
 
 * Fix ``load_terc`` crashing when ``--input`` is missing; it now reports a proper command error
 * Fix release pipeline: publish on ``v*`` tags only, without local versions, using PyPI trusted publishing
 * Remove legacy ``setup.py`` and ``tox.ini``; packaging is defined in ``pyproject.toml``
 * Document release process in ``CONTRIBUTING.rst``
-* Add support for Django 5.2 (tested in CI, declared in classifiers)
+* Add support for Django 5.2
+* Add support for Python 3.12, 3.13, 3.14; Python 3.15 is tested experimentally with Django 5.2
+* Drop support for Django 3.2, 4.1
+* Drop support for Python 3.10
 
 0.18.4 (2023-09-24)
 *******************
