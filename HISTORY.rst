@@ -3,18 +3,34 @@
 History
 -------
 
-0.18.2 (2026-10-02)
+0.19.0 (2026-10-26)
 *******************
 
 * Fix ``load_terc`` crashing when ``--input`` is missing; it now reports a proper command error
+* Fix ``load_terc`` and ``load_simc`` on Python 3.14+: ``--input`` takes a file path instead of ``argparse.FileType`` (deprecated), and an unreadable file raises a command error
 * Fix release pipeline: publish on ``v*`` tags only, without local versions, using PyPI trusted publishing
 * Remove legacy ``setup.py`` and ``tox.ini``; packaging is defined in ``pyproject.toml``
 * Document release process in ``CONTRIBUTING.rst``
+* Add support for Django 5.2
+* Add support for Python 3.12, 3.13, 3.14; Python 3.15 is tested experimentally with Django 5.2
+* Drop support for Django 3.2, 4.1
+* Drop support for Python 3.10
 
-0.18.1 (2023-09-24)
+0.18.4 (2023-09-24)
+*******************
+
+* Update GitHub Actions versions in workflows
+
+0.18.3 (2023-09-24)
 *******************
 
 * Integrate pyproject.toml
+* Upload built package as a CI artifact
+
+0.18.1 (2023-09-13)
+*******************
+
+* Fix package distribution
 
 0.18.0 (2023-09-04)
 *******************

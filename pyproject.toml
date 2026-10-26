@@ -7,7 +7,7 @@ authors = [
 ]
 description = 'Django-teryt-tree is a Django app that implements TERYT database as tree by django-mptt.'
 dependencies = ['django-mptt', 'django-model-utils', 'django-autoslug', 'tqdm']
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 classifiers = [
     'Development Status :: 5 - Production/Stable',
     'Environment :: Web Environment',
@@ -15,12 +15,13 @@ classifiers = [
     'License :: OSI Approved :: BSD License',
     'Natural Language :: Polish',
     'Framework :: Django',
-    'Framework :: Django :: 3.2',
-    'Framework :: Django :: 4.1',
     'Framework :: Django :: 4.2',
+    'Framework :: Django :: 5.2',
     'Programming Language :: Python :: 3',
-    'Programming Language :: Python :: 3.10',
-    'Programming Language :: Python :: 3.11'
+    'Programming Language :: Python :: 3.11',
+    'Programming Language :: Python :: 3.12',
+    'Programming Language :: Python :: 3.13',
+    'Programming Language :: Python :: 3.14',
 ]
 keywords = ['django-teryt-tree']
 license = {file = "LICENSE"}

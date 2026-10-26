@@ -1,4 +1,3 @@
-import argparse
 from datetime import datetime
 
 from django.core.management.base import BaseCommand, CommandError
@@ -20,7 +19,6 @@ class Command(BaseCommand):
         parser.add_argument(
             "--input",
             nargs="?",
-            type=argparse.FileType("r"),
             required=True,
             help="Input XML-file",
         )
@@ -54,7 +52,10 @@ class Command(BaseCommand):
         )
 
     def handle(self, input, no_progress, old_format, *args, **options):
-        root = etree.parse(input)
+        try:
+            root = etree.parse(input)
+        except OSError as e:
+            raise CommandError(f"Unable to read input file {input!r}: {e}")
         self.stdout.write(
             "Importing started. This may take a few seconds. Please wait a moment.\n"
         )
@@ -62,7 +63,6 @@ class Command(BaseCommand):
             self.to_object(x, old_format)
             for x in self.get_iter(root.iter("row"), no_progress)
         )
-        input.close()
 
     def get_iter(self, queryset, no_progress):
         return tqdm(queryset) if no_progress else queryset

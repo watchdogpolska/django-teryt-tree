@@ -5,18 +5,29 @@ on: [push, pull_request]
 jobs:
   django:
     runs-on: ubuntu-latest
+    continue-on-error: ${{ matrix.experimental || false }}
     strategy:
       fail-fast: false
       matrix:
-        python: 
+        python:
           - '3.11'
+          - '3.12'
+          - '3.13'
+          - '3.14'
         django:
           - "==4.2.*"
           - "==5.2.*"
+        exclude:
+          # Django 4.2 supports Python up to 3.12
+          - python: '3.13'
+            django: "==4.2.*"
+          - python: '3.14'
+            django: "==4.2.*"
         include:
-          - python: '3.10'
-            django: "==3.2.*"
-            # Python 3.11 & Django 3.2 raises deprecation warning about deprecated 'cgi' for Python 3.13
+          # No Django release officially supports Python 3.15 yet
+          - python: '3.15'
+            django: "==5.2.*"
+            experimental: true
     steps:
     - uses: actions/checkout@v4
       with:
