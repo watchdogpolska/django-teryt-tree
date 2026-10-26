@@ -3,18 +3,30 @@
 History
 -------
 
-0.18.2 (2026-10-02)
+0.18.5 (2026-10-26)
 *******************
 
 * Fix ``load_terc`` crashing when ``--input`` is missing; it now reports a proper command error
 * Fix release pipeline: publish on ``v*`` tags only, without local versions, using PyPI trusted publishing
 * Remove legacy ``setup.py`` and ``tox.ini``; packaging is defined in ``pyproject.toml``
 * Document release process in ``CONTRIBUTING.rst``
+* Add support for Django 5.2 (tested in CI, declared in classifiers)
 
-0.18.1 (2023-09-24)
+0.18.4 (2023-09-24)
+*******************
+
+* Update GitHub Actions versions in workflows
+
+0.18.3 (2023-09-24)
 *******************
 
 * Integrate pyproject.toml
+* Upload built package as a CI artifact
+
+0.18.1 (2023-09-13)
+*******************
+
+* Fix package distribution
 
 0.18.0 (2023-09-04)
 *******************
