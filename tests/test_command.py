@@ -90,3 +90,23 @@ class TestCommand(TestCase):
     def test_load_simc_without_input_raises_command_error(self):
         with self.assertRaises(CommandError):
             call_command("load_simc", "--no-progress", stdout=StringIO())
+
+    def test_load_terc_with_missing_file_raises_command_error(self):
+        with self.assertRaises(CommandError):
+            call_command(
+                "load_terc",
+                "--no-progress",
+                "--input",
+                "/nonexistent/TERC.xml",
+                stdout=StringIO(),
+            )
+
+    def test_load_simc_with_missing_file_raises_command_error(self):
+        with self.assertRaises(CommandError):
+            call_command(
+                "load_simc",
+                "--no-progress",
+                "--input",
+                "/nonexistent/SIMC.xml",
+                stdout=StringIO(),
+            )

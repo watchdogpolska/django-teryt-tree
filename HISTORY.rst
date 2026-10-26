@@ -7,6 +7,7 @@ History
 *******************
 
 * Fix ``load_terc`` crashing when ``--input`` is missing; it now reports a proper command error
+* Fix ``load_terc`` and ``load_simc`` on Python 3.14+: ``--input`` takes a file path instead of ``argparse.FileType`` (deprecated), and an unreadable file raises a command error
 * Fix release pipeline: publish on ``v*`` tags only, without local versions, using PyPI trusted publishing
 * Remove legacy ``setup.py`` and ``tox.ini``; packaging is defined in ``pyproject.toml``
 * Document release process in ``CONTRIBUTING.rst``

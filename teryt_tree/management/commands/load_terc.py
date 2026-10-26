@@ -1,5 +1,3 @@
-import argparse
-
 from tqdm import tqdm
 from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
@@ -23,7 +21,6 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument(
             "--input",
-            type=argparse.FileType("r"),
             nargs="?",
             required=True,
             help="Input XML-file",
@@ -70,7 +67,10 @@ class Command(BaseCommand):
         return obj
 
     def handle(self, no_progress, input, old_format, limit, *args, **options):
-        root = etree.parse(input)
+        try:
+            root = etree.parse(input)
+        except OSError as e:
+            raise CommandError(f"Unable to read input file {input!r}: {e}")
         self.stdout.write(
             "Importing started. This may take a few seconds. Please wait a moment.\n"
         )
@@ -79,7 +79,6 @@ class Command(BaseCommand):
                 for row in self.get_iter(islice(root.iter("row"), limit), no_progress):
                     item = self.to_object(row, old_format)
                     item.save()
-        input.close()
 
     def get_iter(self, items, no_progress):
         return tqdm(items, file=self.stdout) if no_progress else items
